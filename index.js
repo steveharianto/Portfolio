@@ -73,15 +73,15 @@ document.addEventListener('DOMContentLoaded', function() {
         while(--index && scrollPosition < sections[index].offsetTop) {}
         
         navLinks.forEach(link => {
-            link.classList.remove('text-cyan-400');
+            link.classList.remove('text-fuchsia-400');
             // Remove underline span full width
             const underline = link.querySelector('span');
             if (underline) underline.classList.remove('w-full');
         });
         
-        navLinks[index+1].classList.add('text-cyan-400');
+        navLinks[index].classList.add('text-fuchsia-400');
         // Set underline span to full width for active link
-        const activeUnderline = navLinks[index+1].querySelector('span');
+        const activeUnderline = navLinks[index].querySelector('span');
         if (activeUnderline) activeUnderline.classList.add('w-full');
     }
     
@@ -92,84 +92,46 @@ document.addEventListener('DOMContentLoaded', function() {
         highlightNavigation();
     }
     
-    // Parallax effect on scroll
-    window.addEventListener('scroll', function() {
-        const scrollY = window.scrollY;
-        const heroSection = document.querySelector('#home');
-        
-        if (heroSection) {
-            // Move the background slower than the scroll
-            heroSection.style.backgroundPosition = `center ${scrollY * 0.5}px`;
-        }
-        
-        // Change opacity of nav on scroll
-        const nav = document.querySelector('nav');
-        if (nav) {
-            if (scrollY > 100) {
-                nav.classList.add('bg-slate-900/95');
-                nav.classList.remove('bg-slate-900/90');
-            } else {
-                nav.classList.add('bg-slate-900/90');
-                nav.classList.remove('bg-slate-900/95');
-            }
-        }
-    });
+    // Add some gaming-inspired particle effects
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'fixed inset-0 pointer-events-none z-0';
+    document.body.appendChild(particlesContainer);
     
-    // Typing effect for skills section
-    function typeEffect(element, text, i = 0, speed = 50) {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(() => typeEffect(element, text, i, speed), speed);
-        }
+    // Create some random particles
+    for (let i = 0; i < 20; i++) {
+        createParticle();
     }
     
-    // Intersection Observer for the typing effect
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const typingElement = entry.target;
-                const textToType = typingElement.getAttribute('data-text');
-                
-                if (textToType && typingElement.innerHTML === '') {
-                    typeEffect(typingElement, textToType);
-                }
-                
-                // Unobserve after typing starts
-                observer.unobserve(typingElement);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    // Observe elements with typing-target class
-    document.querySelectorAll('.typing-target').forEach(el => {
-        observer.observe(el);
-    });
-    
-    // Initialize counters for skills
-    const skillLevels = document.querySelectorAll('.skill-level');
-    
-    skillLevels.forEach(level => {
-        const target = parseInt(level.getAttribute('data-level'));
-        let count = 0;
-        const increment = () => {
-            if (count < target) {
-                count++;
-                level.style.width = count + '%';
-                setTimeout(increment, 20);
-            }
-        };
+    function createParticle() {
+        const particle = document.createElement('div');
         
-        // Use Intersection Observer to trigger counter
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    increment();
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+        // Random size between 2-6px
+        const size = Math.random() * 4 + 2;
         
-        counterObserver.observe(level);
-    });
+        // Random position
+        const posX = Math.random() * window.innerWidth;
+        const posY = Math.random() * window.innerHeight;
+        
+        // Random color (purple/pink hues)
+        const hue = Math.random() * 60 + 280; // 280-340 is purple to pink
+        
+        particle.className = 'absolute rounded-full';
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}px`;
+        particle.style.top = `${posY}px`;
+        particle.style.backgroundColor = `hsla(${hue}, 100%, 70%, 0.6)`;
+        particle.style.boxShadow = `0 0 ${size * 2}px hsla(${hue}, 100%, 70%, 0.8)`;
+        
+        // Animation
+        particle.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+        
+        particlesContainer.appendChild(particle);
+        
+        // Remove and recreate particle after some time
+        setTimeout(() => {
+            particle.remove();
+            createParticle();
+        }, Math.random() * 10000 + 10000);
+    }
 });

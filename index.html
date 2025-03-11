@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom styles -->
     <style>
         /* Ensure the gradient shows through all content */
@@ -21,20 +21,20 @@
         }
         
         body {
-            /* Rich gradient that transitions through various blue-purple tones */
+            /* Rich gradient that transitions through various purple-pink tones */
             background: linear-gradient(135deg, 
-                #0f0f1e 0%, 
-                #1c1b44 25%, 
-                #262550 50%, 
-                #1f1f3d 75%, 
-                #0f172a 100%);
+                #0a0118 0%, 
+                #1a0b30 25%, 
+                #2b0f4e 50%, 
+                #3b1064 75%, 
+                #220b3d 100%);
             background-size: 400% 400%;
             background-attachment: fixed;
             color: #e2e8f0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             position: relative;
             /* Subtle animation for background */
-            animation: gradientShift 25s ease infinite;
+            animation: gradientShift 15s ease infinite;
         }
         
         @keyframes gradientShift {
@@ -56,7 +56,8 @@
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
         }
         
         /* Fixed typewriter animation */
@@ -67,7 +68,7 @@
         .typing-animation {
             overflow: hidden;
             display: inline-block;
-            border-right: .15em solid #a78bfa;
+            border-right: .15em solid #d946ef;
             white-space: nowrap;
             margin: 0 auto;
             width: 0;
@@ -81,59 +82,148 @@
         }
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: #a78bfa }
+            50% { border-color: #d946ef }
         }
         
         .gradient-text {
-            background: linear-gradient(to right, #a78bfa, #f472b6);
+            background: linear-gradient(to right, #d946ef, #ec4899);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            text-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
         }
+        
         .tech-card {
             transition: all 0.3s ease;
+            border: 1px solid rgba(217, 70, 239, 0.3);
+            box-shadow: 0 0 15px rgba(217, 70, 239, 0.2);
         }
+        
         .tech-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(217, 70, 239, 0.4);
+            border-color: rgba(217, 70, 239, 0.6);
         }
+        
         .tech-icon {
-            filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.4));
+            filter: drop-shadow(0 0 8px rgba(217, 70, 239, 0.6));
         }
         
         /* Glass effect for cards */
         .glass-card {
-            background: rgba(15, 23, 42, 0.4);
+            background: rgba(26, 11, 48, 0.4);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(217, 70, 239, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 15px rgba(217, 70, 239, 0.2);
+        }
+        
+        /* Neon button effect */
+        .neon-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(217, 70, 239, 0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .neon-button:hover::before {
+            left: 100%;
+        }
+        
+        /* Gaming-inspired decorative elements */
+        .gaming-icon {
+            position: absolute;
+            opacity: 0.1;
+            filter: drop-shadow(0 0 15px rgba(217, 70, 239, 0.8));
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        /* Glowing border */
+        .glow-border {
+            position: relative;
+        }
+        
+        .glow-border::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: inherit;
+            background: linear-gradient(45deg, #d946ef, transparent, #ec4899, transparent) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: borderGlow 3s linear infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
         }
     </style>
 </head>
 <body>
+    <!-- Gaming decorative elements -->
+    <div class="gaming-icon" style="top: 15%; right: 10%; width: 100px; height: 100px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="#d946ef">
+            <path d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 248c-22.1 0-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40s-17.9 40-40 40zm-24 56c0 22.1-17.9 40-40 40s-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"/>
+        </svg>
+    </div>
+    <div class="gaming-icon" style="bottom: 20%; left: 5%; width: 80px; height: 80px; animation-delay: 2s;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#ec4899">
+            <path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.7 363c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0z"/>
+        </svg>
+    </div>
+    <div class="gaming-icon" style="top: 40%; left: 15%; width: 120px; height: 120px; animation-delay: 1s;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="#d946ef">
+            <path d="M80 0C44.7 0 16 28.7 16 64V448c0 35.3 28.7 64 64 64H304c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H80zm80 432h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H160c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+        </svg>
+    </div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full bg-gray-900/50 backdrop-blur-md shadow-lg z-10 border-b border-gray-700/30 transition-all duration-300">
+    <nav class="fixed w-full bg-purple-900/50 backdrop-blur-md shadow-lg z-10 border-b border-fuchsia-500/30 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold gradient-text">Steven Harianto</a>
             <div class="hidden md:flex space-x-8">
-                <a href="#home" class="hover:text-violet-400 transition-all duration-300 relative group">
+                <a href="#home" class="hover:text-fuchsia-400 transition-all duration-300 relative group">
                     Home
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-violet-400 transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-fuchsia-400 transition-all duration-300 group-hover:w-full"></span>
                 </a>
-                <a href="#about" class="hover:text-violet-400 transition-all duration-300 relative group">
+                <a href="#about" class="hover:text-fuchsia-400 transition-all duration-300 relative group">
                     About
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-violet-400 transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-fuchsia-400 transition-all duration-300 group-hover:w-full"></span>
                 </a>
-                <a href="#skills" class="hover:text-violet-400 transition-all duration-300 relative group">
+                <a href="#skills" class="hover:text-fuchsia-400 transition-all duration-300 relative group">
                     Skills
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-violet-400 transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-fuchsia-400 transition-all duration-300 group-hover:w-full"></span>
                 </a>
-                <a href="#projects" class="hover:text-violet-400 transition-all duration-300 relative group">
+                <a href="#projects" class="hover:text-fuchsia-400 transition-all duration-300 relative group">
                     Projects
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-violet-400 transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-fuchsia-400 transition-all duration-300 group-hover:w-full"></span>
                 </a>
-                <a href="#contact" class="hover:text-violet-400 transition-all duration-300 relative group">
+                <a href="#contact" class="hover:text-fuchsia-400 transition-all duration-300 relative group">
                     Contact
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-violet-400 transition-all duration-300 group-hover:w-full"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-fuchsia-400 transition-all duration-300 group-hover:w-full"></span>
                 </a>
             </div>
             <!-- Mobile menu button -->
@@ -145,58 +235,60 @@
         </div>
         <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-900 backdrop-blur-md">
-                <a href="#home" class="block px-3 py-2 hover:bg-indigo-900/30 rounded transition-all duration-300">Home</a>
-                <a href="#about" class="block px-3 py-2 hover:bg-indigo-900/30 rounded transition-all duration-300">About</a>
-                <a href="#skills" class="block px-3 py-2 hover:bg-indigo-900/30 rounded transition-all duration-300">Skills</a>
-                <a href="#projects" class="block px-3 py-2 hover:bg-indigo-900/30 rounded transition-all duration-300">Projects</a>
-                <a href="#contact" class="block px-3 py-2 hover:bg-indigo-900/30 rounded transition-all duration-300">Contact</a>
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-purple-900/70 backdrop-blur-md">
+                <a href="#home" class="block px-3 py-2 hover:bg-fuchsia-900/30 rounded transition-all duration-300">Home</a>
+                <a href="#about" class="block px-3 py-2 hover:bg-fuchsia-900/30 rounded transition-all duration-300">About</a>
+                <a href="#skills" class="block px-3 py-2 hover:bg-fuchsia-900/30 rounded transition-all duration-300">Skills</a>
+                <a href="#projects" class="block px-3 py-2 hover:bg-fuchsia-900/30 rounded transition-all duration-300">Projects</a>
+                <a href="#contact" class="block px-3 py-2 hover:bg-fuchsia-900/30 rounded transition-all duration-300">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="section h-screen flex items-center bg-gradient-to-r from-gray-900 to-indigo-950 text-white animated-bg">
-        <div class="container mx-auto px-6 py-12 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">Hi, I'm <span class="gradient-text">Steven Harianto</span></h1>
-            <div class="typewriter-container mb-6">
+    <section id="home" class="section h-screen flex items-center text-white">
+        <div class="container mx-auto px-6 py-12 text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6" data-aos="fade-up">Hi, I'm <span class="gradient-text">Steven Harianto</span></h1>
+            <div class="typewriter-container mb-6" data-aos="fade-up" data-aos-delay="300">
                 <h2 class="text-2xl md:text-3xl typing-animation">Full Stack Developer</h2>
             </div>
-            <p class="text-xl max-w-2xl mx-auto mb-10">Learning Mobile Development and Deep Learning</p>
-            <a href="#projects" class="bg-gradient-to-r from-violet-600 to-pink-600 text-white px-8 py-3 rounded-full font-bold hover:from-violet-500 hover:to-pink-500 transition shadow-lg hover:shadow-violet-500/20 transform hover:-translate-y-1 hover:scale-105">View My Work</a>
+            <p class="text-xl max-w-2xl mx-auto mb-10 text-fuchsia-100" data-aos="fade-up" data-aos-delay="600">Learning Mobile Development and Deep Learning</p>
+            <a href="#projects" class="neon-button bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-8 py-3 rounded-full font-bold hover:from-fuchsia-500 hover:to-pink-500 transition shadow-lg shadow-fuchsia-500/20 transform hover:-translate-y-1 hover:scale-105" data-aos="fade-up" data-aos-delay="900">
+                View My Work
+            </a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section h-screen flex items-center bg-gradient-to-r from-gray-900 to-indigo-950 text-white animated-bg">
+    <section id="about" class="section py-24">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">About Me</h2>
+            <h2 class="text-4xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">About Me</h2>
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/3 mb-8 md:mb-0" data-aos="fade-right" data-aos-duration="800">
-                    <div class="relative">
-                        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-violet-500 to-indigo-600 blur-xl opacity-20 transform -rotate-6"></div>
+                    <div class="relative glow-border rounded-xl">
+                        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-fuchsia-500 to-pink-600 blur-xl opacity-20 transform -rotate-6"></div>
                         <img src="https://via.placeholder.com/400" alt="Steven Harianto" class="rounded-xl shadow-xl mx-auto relative">
                     </div>
                 </div>
                 <div class="md:w-2/3 md:pl-16" data-aos="fade-left" data-aos-duration="800">
-                    <p class="text-lg mb-6 leading-relaxed text-gray-300">
+                    <p class="text-lg mb-6 leading-relaxed text-fuchsia-100">
                         I'm interested in programming since high school. I like solving coding problems and seeing my programs work. 
                         My first interest in programming was web development, because I could immediately see feedback of my website 
                         becoming real - it's so satisfying and was the first branch of programming that made me think of the potential of programming.
                     </p>
-                    <p class="text-lg mb-8 leading-relaxed text-gray-300">
+                    <p class="text-lg mb-8 leading-relaxed text-fuchsia-100">
                         I am currently honing my skills in web development by trying frameworks like React, Next, Angular, and Laravel. 
                         I'm also currently interested in deep learning, creating models to solve problems, and learning mobile development, 
                         starting from Flutter and Kotlin Android Studio. I like trying new things and exploring what's possible to create, 
                         and I'm especially excited about the future of AI.
                     </p>
                     <div class="flex space-x-6" data-aos="fade-up" data-aos-delay="200">
-                        <a href="http://github.com/steveharianto/" target="_blank" class="text-violet-400 hover:text-pink-300 transform hover:scale-110 transition-all" title="GitHub">
+                        <a href="http://github.com/steveharianto/" target="_blank" class="text-fuchsia-400 hover:text-pink-300 transform hover:scale-110 transition-all" title="GitHub">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
                         </a>
-                        <a href="https://www.linkedin.com/in/steven-harianto/" target="_blank" class="text-violet-400 hover:text-pink-300 transform hover:scale-110 transition-all" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/steven-harianto/" target="_blank" class="text-fuchsia-400 hover:text-pink-300 transform hover:scale-110 transition-all" title="LinkedIn">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
                             </svg>
@@ -208,37 +300,37 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section h-screen flex items-center bg-gradient-to-r from-gray-900 to-indigo-950 text-white animated-bg">
+    <section id="skills" class="section py-24">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">My Skills</h2>
+            <h2 class="text-4xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">My Skills</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                 <!-- HTML5 -->
-                <div class="tech-card bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-indigo-900/30 hover:border-violet-500 transition-all" data-aos="flip-up" data-aos-delay="100">
-                    <div class="text-violet-400 text-5xl mb-6 flex justify-center tech-icon">
+                <div class="tech-card bg-purple-900/40 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:border-fuchsia-500 transition-all" data-aos="flip-up" data-aos-delay="100">
+                    <div class="text-fuchsia-400 text-5xl mb-6 flex justify-center tech-icon">
                         <i class="fab fa-html5"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-center">HTML5</h3>
                 </div>
                 
                 <!-- CSS3 -->
-                <div class="tech-card bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-indigo-900/30 hover:border-violet-500 transition-all" data-aos="flip-up" data-aos-delay="200">
-                    <div class="text-violet-400 text-5xl mb-6 flex justify-center tech-icon">
+                <div class="tech-card bg-purple-900/40 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:border-fuchsia-500 transition-all" data-aos="flip-up" data-aos-delay="200">
+                    <div class="text-fuchsia-400 text-5xl mb-6 flex justify-center tech-icon">
                         <i class="fab fa-css3-alt"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-center">CSS3</h3>
                 </div>
                 
                 <!-- JavaScript -->
-                <div class="tech-card bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-indigo-900/30 hover:border-violet-500 transition-all" data-aos="flip-up" data-aos-delay="300">
-                    <div class="text-violet-400 text-5xl mb-6 flex justify-center tech-icon">
+                <div class="tech-card bg-purple-900/40 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:border-fuchsia-500 transition-all" data-aos="flip-up" data-aos-delay="300">
+                    <div class="text-fuchsia-400 text-5xl mb-6 flex justify-center tech-icon">
                         <i class="fab fa-js"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-center">JavaScript</h3>
                 </div>
                 
                 <!-- React -->
-                <div class="tech-card bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-indigo-900/30 hover:border-violet-500 transition-all" data-aos="flip-up" data-aos-delay="400">
-                    <div class="text-violet-400 text-5xl mb-6 flex justify-center tech-icon">
+                <div class="tech-card bg-purple-900/40 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:border-fuchsia-500 transition-all" data-aos="flip-up" data-aos-delay="400">
+                    <div class="text-fuchsia-400 text-5xl mb-6 flex justify-center tech-icon">
                         <i class="fab fa-react"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-center">React</h3>
@@ -247,48 +339,48 @@
             
             <!-- Additional Skills -->
             <div class="mt-16" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="text-2xl font-semibold mb-8 text-center text-violet-400">Other Technologies</h3>
+                <h3 class="text-2xl font-semibold mb-8 text-center text-fuchsia-400">Other Technologies</h3>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <span class="px-4 py-2 bg-gray-800 text-violet-400 rounded-full border border-indigo-900/30">NextJS</span>
-                    <span class="px-4 py-2 bg-gray-800 text-violet-400 rounded-full border border-indigo-900/30">Angular</span>
-                    <span class="px-4 py-2 bg-gray-800 text-violet-400 rounded-full border border-indigo-900/30">Laravel</span>
-                    <span class="px-4 py-2 bg-gray-800 text-violet-400 rounded-full border border-indigo-900/30">Flutter</span>
-                    <span class="px-4 py-2 bg-gray-800 text-violet-400 rounded-full border border-indigo-900/30">Kotlin</span>
-                    <span class="px-4 py-2 bg-gray-800 text-violet-400 rounded-full border border-indigo-900/30">Deep Learning</span>
-                    <span class="px-4 py-2 bg-gray-800 text-violet-400 rounded-full border border-indigo-900/30">SQL</span>
-                    <span class="px-4 py-2 bg-gray-800 text-violet-400 rounded-full border border-indigo-900/30">Git</span>
+                    <span class="px-4 py-2 bg-purple-900/40 text-fuchsia-400 rounded-full border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300 hover:shadow-fuchsia-500/20 hover:shadow-lg">NextJS</span>
+                    <span class="px-4 py-2 bg-purple-900/40 text-fuchsia-400 rounded-full border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300 hover:shadow-fuchsia-500/20 hover:shadow-lg">Angular</span>
+                    <span class="px-4 py-2 bg-purple-900/40 text-fuchsia-400 rounded-full border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300 hover:shadow-fuchsia-500/20 hover:shadow-lg">Laravel</span>
+                    <span class="px-4 py-2 bg-purple-900/40 text-fuchsia-400 rounded-full border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300 hover:shadow-fuchsia-500/20 hover:shadow-lg">Flutter</span>
+                    <span class="px-4 py-2 bg-purple-900/40 text-fuchsia-400 rounded-full border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300 hover:shadow-fuchsia-500/20 hover:shadow-lg">Kotlin</span>
+                    <span class="px-4 py-2 bg-purple-900/40 text-fuchsia-400 rounded-full border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300 hover:shadow-fuchsia-500/20 hover:shadow-lg">Deep Learning</span>
+                    <span class="px-4 py-2 bg-purple-900/40 text-fuchsia-400 rounded-full border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300 hover:shadow-fuchsia-500/20 hover:shadow-lg">SQL</span>
+                    <span class="px-4 py-2 bg-purple-900/40 text-fuchsia-400 rounded-full border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300 hover:shadow-fuchsia-500/20 hover:shadow-lg">Git</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section h-screen flex items-center bg-gradient-to-r from-gray-900 to-indigo-950 text-white animated-bg">
+    <section id="projects" class="section py-24">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">My Projects</h2>
+            <h2 class="text-4xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">My Projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
                 <div class="glass-card rounded-xl overflow-hidden shadow-xl group" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative overflow-hidden">
                         <img src="https://via.placeholder.com/600x400" alt="Project 1" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <div class="p-8 border-t border-gray-700/30">
-                        <h3 class="text-xl font-bold mb-3 text-violet-400">Project Title 1</h3>
+                    <div class="p-8 border-t border-fuchsia-500/30">
+                        <h3 class="text-xl font-bold mb-3 text-fuchsia-400">Project Title 1</h3>
                         <p class="text-gray-300 mb-6">A brief description of the project, highlighting key features and technologies used.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 bg-gray-800/50 text-xs text-violet-300 rounded">React</span>
-                            <span class="px-2 py-1 bg-gray-800/50 text-xs text-violet-300 rounded">Tailwind CSS</span>
-                            <span class="px-2 py-1 bg-gray-800/50 text-xs text-violet-300 rounded">Firebase</span>
+                            <span class="px-2 py-1 bg-purple-900/50 text-xs text-fuchsia-300 rounded">Flutter</span>
+                            <span class="px-2 py-1 bg-purple-900/50 text-xs text-fuchsia-300 rounded">Firebase</span>
+                            <span class="px-2 py-1 bg-purple-900/50 text-xs text-fuchsia-300 rounded">Dart</span>
                         </div>
                         <div class="flex justify-between">
-                            <a href="#" class="text-violet-400 hover:text-pink-300 transition-colors flex items-center gap-1">
+                            <a href="#" class="text-fuchsia-400 hover:text-pink-300 transition-colors flex items-center gap-1">
                                 <span>View Live</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                 </svg>
                             </a>
-                            <a href="#" class="text-violet-400 hover:text-pink-300 transition-colors flex items-center gap-1">
+                            <a href="#" class="text-fuchsia-400 hover:text-pink-300 transition-colors flex items-center gap-1">
                                 <span>View Code</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -297,60 +389,61 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Project 2 -->
-                <div class="glass-card rounded-xl overflow-hidden shadow-xl group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative overflow-hidden">
-                        <img src="https://via.placeholder.com/600x400" alt="Project 2" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="p-8 border-t border-gray-700/30">
-                        <h3 class="text-xl font-bold mb-3 text-violet-400">Project Title 2</h3>
-                        <p class="text-gray-300 mb-6">A brief description of the project, highlighting key features and technologies used.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 bg-gray-800/50 text-xs text-violet-300 rounded">Flutter</span>
-                            <span class="px-2 py-1 bg-gray-800/50 text-xs text-violet-300 rounded">Firebase</span>
-                            <span class="px-2 py-1 bg-gray-800/50 text-xs text-violet-300 rounded">Dart</span>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 2 -->
+                    <div class="glass-card rounded-xl overflow-hidden shadow-xl group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative overflow-hidden">
+                            <img src="https://via.placeholder.com/600x400" alt="Project 2" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-purple-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
-                        <div class="flex justify-between">
-                            <a href="#" class="text-violet-400 hover:text-pink-300 transition-colors flex items-center gap-1">
-                                <span>View Live</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
-                            <a href="#" class="text-violet-400 hover:text-pink-300 transition-colors flex items-center gap-1">
-                                <span>View Code</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                </svg>
-                            </a>
+                        <div class="p-8 border-t border-fuchsia-500/30">
+                            <h3 class="text-xl font-bold mb-3 text-fuchsia-400">Project Title 2</h3>
+                            <p class="text-gray-300 mb-6">A brief description of the project, highlighting key features and technologies used.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2 py-1 bg-purple-900/50 text-xs text-fuchsia-300 rounded">Flutter</span>
+                                <span class="px-2 py-1 bg-purple-900/50 text-xs text-fuchsia-300 rounded">Firebase</span>
+                                <span class="px-2 py-1 bg-purple-900/50 text-xs text-fuchsia-300 rounded">Dart</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <a href="#" class="text-fuchsia-400 hover:text-pink-300 transition-colors flex items-center gap-1">
+                                    <span>View Live</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="text-fuchsia-400 hover:text-pink-300 transition-colors flex items-center gap-1">
+                                    <span>View Code</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 
                 <!-- Project 3 -->
                 <div class="glass-card rounded-xl overflow-hidden shadow-xl group" data-aos="fade-up" data-aos-delay="300">
                     <div class="relative overflow-hidden">
                         <img src="https://via.placeholder.com/600x400" alt="Project 3" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <div class="p-8 border-t border-gray-700/30">
-                        <h3 class="text-xl font-bold mb-3 text-violet-400">Project Title 3</h3>
+                    <div class="p-8 border-t border-fuchsia-500/30">
+                        <h3 class="text-xl font-bold mb-3 text-fuchsia-400">Project Title 3</h3>
                         <p class="text-gray-300 mb-6">A brief description of the project, highlighting key features and technologies used.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 bg-gray-800/50 text-xs text-violet-300 rounded">TensorFlow</span>
-                            <span class="px-2 py-1 bg-gray-800/50 text-xs text-violet-300 rounded">Python</span>
-                            <span class="px-2 py-1 bg-gray-800/50 text-xs text-violet-300 rounded">PyTorch</span>
+                            <span class="px-2 py-1 bg-purple-900/50 text-xs text-fuchsia-300 rounded">TensorFlow</span>
+                            <span class="px-2 py-1 bg-purple-900/50 text-xs text-fuchsia-300 rounded">Python</span>
+                            <span class="px-2 py-1 bg-purple-900/50 text-xs text-fuchsia-300 rounded">PyTorch</span>
                         </div>
                         <div class="flex justify-between">
-                            <a href="#" class="text-violet-400 hover:text-pink-300 transition-colors flex items-center gap-1">
+                            <a href="#" class="text-fuchsia-400 hover:text-pink-300 transition-colors flex items-center gap-1">
                                 <span>View Live</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                 </svg>
                             </a>
-                            <a href="#" class="text-violet-400 hover:text-pink-300 transition-colors flex items-center gap-1">
+                            <a href="#" class="text-fuchsia-400 hover:text-pink-300 transition-colors flex items-center gap-1">
                                 <span>View Code</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -360,81 +453,146 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- View More Projects Button -->
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+                <a href="#" class="neon-button inline-block bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-8 py-3 rounded-full font-bold hover:from-fuchsia-500 hover:to-pink-500 transition shadow-lg shadow-fuchsia-500/20 transform hover:-translate-y-1 hover:scale-105">
+                    View More Projects
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section h-screen flex items-center bg-gradient-to-r from-gray-900 to-indigo-950 text-white animated-bg">
+    <section id="contact" class="section py-24">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">Get In Touch</h2>
-            <div class="max-w-2xl mx-auto glass-card p-8 rounded-xl shadow-xl border border-gray-700/30" data-aos="fade-up" data-aos-delay="200">
-                <form id="contact-form" class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
-                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-900/70 border border-gray-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 text-white transition">
+            <h2 class="text-4xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">Get In Touch</h2>
+            
+            <!-- Gaming-inspired decorative element -->
+            <div class="relative">
+                <div class="absolute -top-20 -right-10 opacity-10 w-40 h-40 z-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="#d946ef">
+                        <path d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 248c-22.1 0-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40s-17.9 40-40 40zm-24 56c0 22.1-17.9 40-40 40s-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"/>
+                    </svg>
+                </div>
+                
+                <div class="max-w-2xl mx-auto glass-card p-8 rounded-xl shadow-xl border border-fuchsia-500/30 glow-border relative z-10" data-aos="fade-up" data-aos-delay="200">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-fuchsia-100 mb-2">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-purple-900/40 border border-fuchsia-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500 text-white transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-fuchsia-100 mb-2">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-purple-900/40 border border-fuchsia-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500 text-white transition">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-fuchsia-100 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-purple-900/40 border border-fuchsia-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500 text-white transition"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-6 py-3 rounded-lg font-medium hover:from-fuchsia-500 hover:to-pink-500 transition shadow-lg hover:shadow-fuchsia-500/20 transform hover:-translate-y-1 neon-button">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Contact Info Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+                <!-- Email -->
+                <div class="glass-card p-6 rounded-xl text-center border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 mx-auto bg-fuchsia-500/10 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-fuchsia-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
                     </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-900/70 border border-gray-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 text-white transition">
+                    <h3 class="text-xl font-semibold mb-2 text-fuchsia-400">Email</h3>
+                    <p class="text-gray-300">stevenharianto@example.com</p>
+                </div>
+                
+                <!-- Location -->
+                <div class="glass-card p-6 rounded-xl text-center border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 mx-auto bg-fuchsia-500/10 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-fuchsia-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                     </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-gray-900/70 border border-gray-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 text-white transition"></textarea>
+                    <h3 class="text-xl font-semibold mb-2 text-fuchsia-400">Location</h3>
+                    <p class="text-gray-300">Surabaya, Indonesia</p>
+                </div>
+                
+                <!-- Social -->
+                <div class="glass-card p-6 rounded-xl text-center border border-fuchsia-500/30 hover:border-fuchsia-500/60 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 mx-auto bg-fuchsia-500/10 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-fuchsia-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
                     </div>
-                    <div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-violet-600 to-pink-600 text-white px-6 py-3 rounded-lg font-medium hover:from-violet-500 hover:to-pink-500 transition shadow-lg hover:shadow-violet-500/20 transform hover:-translate-y-1">
-                            Send Message
-                        </button>
+                    <h3 class="text-xl font-semibold mb-2 text-fuchsia-400">Social Media</h3>
+                    <div class="flex justify-center space-x-4">
+                        <a href="http://github.com/steveharianto/" target="_blank" class="text-gray-300 hover:text-fuchsia-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/steven-harianto/" target="_blank" class="text-gray-300 hover:text-fuchsia-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                            </svg>
+                        </a>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900/40 backdrop-blur-md text-white py-16 border-t border-violet-900/20">
+    <footer class="bg-purple-900/40 backdrop-blur-md text-white py-16 border-t border-fuchsia-500/20">
         <div class="container mx-auto px-6">
             <!-- Main Footer Content -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                 <!-- Brand Column -->
                 <div>
                     <h3 class="text-2xl font-bold gradient-text mb-6">Steven Harianto</h3>
-                    <p class="text-gray-300 mb-4">Full Stack Developer specializing in web and mobile applications with expertise in AI and machine learning integration.</p>
-                    <p class="text-gray-400">Based in Surabaya, Indonesia</p>
+                    <p class="text-fuchsia-100 mb-4">Full Stack Developer specializing in web and mobile applications with expertise in AI and machine learning integration.</p>
+                    <p class="text-fuchsia-200/70">Based in Surabaya, Indonesia</p>
                 </div>
                 
                 <!-- Quick Links -->
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-6 relative">
                         Quick Links
-                        <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-violet-600 to-pink-600"></span>
+                        <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-fuchsia-600 to-pink-600"></span>
                     </h4>
                     <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-300 hover:text-violet-400 transition-colors flex items-center gap-2">
+                        <li><a href="#home" class="text-fuchsia-100 hover:text-fuchsia-400 transition-colors flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
                             Home
                         </a></li>
-                        <li><a href="#about" class="text-gray-300 hover:text-violet-400 transition-colors flex items-center gap-2">
+                        <li><a href="#about" class="text-fuchsia-100 hover:text-fuchsia-400 transition-colors flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
                             About
                         </a></li>
-                        <li><a href="#skills" class="text-gray-300 hover:text-violet-400 transition-colors flex items-center gap-2">
+                        <li><a href="#skills" class="text-fuchsia-100 hover:text-fuchsia-400 transition-colors flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
                             Skills
                         </a></li>
-                        <li><a href="#projects" class="text-gray-300 hover:text-violet-400 transition-colors flex items-center gap-2">
+                        <li><a href="#projects" class="text-fuchsia-100 hover:text-fuchsia-400 transition-colors flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
                             Projects
                         </a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-violet-400 transition-colors flex items-center gap-2">
+                        <li><a href="#contact" class="text-fuchsia-100 hover:text-fuchsia-400 transition-colors flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
@@ -447,21 +605,21 @@
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-6 relative">
                         Contact
-                        <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-violet-600 to-pink-600"></span>
+                        <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-fuchsia-600 to-pink-600"></span>
                     </h4>
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-violet-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-fuchsia-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            <span class="text-gray-300">stevenharianto@example.com</span>
+                            <span class="text-fuchsia-100">stevenharianto@example.com</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-violet-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-fuchsia-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
-                            <span class="text-gray-300">Surabaya, Indonesia</span>
+                            <span class="text-fuchsia-100">Surabaya, Indonesia</span>
                         </li>
                     </ul>
                 </div>
@@ -470,41 +628,41 @@
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-6 relative">
                         Connect
-                        <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-violet-600 to-pink-600"></span>
+                        <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-fuchsia-600 to-pink-600"></span>
                     </h4>
                     <div class="flex space-x-4 mb-6">
-                        <a href="http://github.com/steveharianto/" target="_blank" class="bg-gray-800/50 hover:bg-violet-600/50 transition-colors p-3 rounded-lg" title="GitHub">
+                        <a href="http://github.com/steveharianto/" target="_blank" class="bg-purple-800/50 hover:bg-fuchsia-600/50 transition-colors p-3 rounded-lg" title="GitHub">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
                         </a>
-                        <a href="https://www.linkedin.com/in/steven-harianto/" target="_blank" class="bg-gray-800/50 hover:bg-violet-600/50 transition-colors p-3 rounded-lg" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/steven-harianto/" target="_blank" class="bg-purple-800/50 hover:bg-fuchsia-600/50 transition-colors p-3 rounded-lg" title="LinkedIn">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
                             </svg>
                         </a>
-                        <a href="#" target="_blank" class="bg-gray-800/50 hover:bg-violet-600/50 transition-colors p-3 rounded-lg" title="Twitter">
+                        <a href="#" target="_blank" class="bg-purple-800/50 hover:bg-fuchsia-600/50 transition-colors p-3 rounded-lg" title="Twitter">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                             </svg>
                         </a>
-                        <a href="#" target="_blank" class="bg-gray-800/50 hover:bg-violet-600/50 transition-colors p-3 rounded-lg" title="Instagram">
+                        <a href="#" target="_blank" class="bg-purple-800/50 hover:bg-fuchsia-600/50 transition-colors p-3 rounded-lg" title="Instagram">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                             </svg>
                         </a>
                     </div>
-                    <p class="text-gray-400 text-sm">Follow me on social media for updates on my latest projects and tech insights.</p>
+                    <p class="text-fuchsia-100/70 text-sm">Follow me on social media for updates on my latest projects and tech insights.</p>
                 </div>
             </div>
             
             <!-- Copyright Bar -->
-            <div class="border-t border-gray-800/30 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 Steven Harianto. All rights reserved.</p>
-                <div class="flex space-x-6 text-sm text-gray-500">
-                    <a href="#" class="hover:text-violet-400 transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-violet-400 transition-colors">Terms of Service</a>
-                    <a href="#" class="hover:text-violet-400 transition-colors">Cookie Policy</a>
+            <div class="border-t border-fuchsia-500/20 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-fuchsia-100/70 text-sm mb-4 md:mb-0">&copy; 2023 Steven Harianto. All rights reserved.</p>
+                <div class="flex space-x-6 text-sm text-fuchsia-200/50">
+                    <a href="#" class="hover:text-fuchsia-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-fuchsia-400 transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-fuchsia-400 transition-colors">Cookie Policy</a>
                 </div>
             </div>
         </div>
