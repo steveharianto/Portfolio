@@ -39,7 +39,7 @@ class ProjectCard extends HTMLElement {
     const projectId = this.getAttribute('project-id') || '0';
 
     container.innerHTML = `
-      <div class="image-container" style="display: flex; align-items: center; justify-content: center; background-color: rgba(26, 11, 48, 0.6);">
+      <div class="image-container" style="display: flex; align-items: center; justify-content: center; background-color: rgba(10, 27, 48, 0.6);">
         <img src="${image}" alt="${title}" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;">
         <div class="overlay"></div>
       </div>

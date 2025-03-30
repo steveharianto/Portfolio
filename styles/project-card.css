@@ -3,23 +3,23 @@
 }
 
 .card {
-  background: rgba(26, 11, 48, 0.4);
+  background: rgba(10, 27, 48, 0.4);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(217, 70, 239, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.2);
   border-radius: 0.75rem;
   overflow: hidden;
   transition: all 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(217, 70, 239, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(6, 182, 212, 0.2);
   contain: content;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(217, 70, 239, 0.4);
-  border-color: rgba(217, 70, 239, 0.4);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.4);
+  border-color: rgba(6, 182, 212, 0.4);
 }
 
 .image-container {
@@ -49,7 +49,7 @@ img {
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(26, 11, 48, 0.9) 0%, rgba(26, 11, 48, 0.5) 50%, rgba(26, 11, 48, 0) 100%);
+  background: linear-gradient(to top, rgba(10, 27, 48, 0.9) 0%, rgba(10, 27, 48, 0.5) 50%, rgba(10, 27, 48, 0) 100%);
   opacity: 0.7;
   transition: opacity 0.3s;
 }
@@ -69,7 +69,7 @@ h3 {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0 0 0.75rem 0;
-  color: rgb(232, 121, 249);
+  color: rgb(56, 189, 248);
   font-family: 'Rajdhani', sans-serif;
   letter-spacing: 0.5px;
 }
@@ -83,7 +83,7 @@ h3 {
 }
 
 .date-label {
-  color: rgba(232, 121, 249, 0.7);
+  color: rgba(56, 189, 248, 0.7);
   font-family: 'Poppins', sans-serif;
 }
 
@@ -96,7 +96,7 @@ h3 {
 }
 
 .completed {
-  color: rgb(232, 121, 249);
+  color: rgb(56, 189, 248);
   font-weight: 600;
 }
 
@@ -117,9 +117,9 @@ p {
 
 .tag {
   padding: 0.35rem 0.75rem;
-  background: rgba(88, 28, 135, 0.5);
+  background: rgba(30, 64, 175, 0.5);
   font-size: 0.75rem;
-  color: rgb(216, 180, 254);
+  color: rgb(147, 197, 253);
   border-radius: 0.25rem;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 0.5px;
@@ -127,8 +127,8 @@ p {
 }
 
 .card:hover .tag {
-  background: rgba(107, 33, 168, 0.6);
-  color: rgb(228, 200, 255);
+  background: rgba(37, 99, 235, 0.6);
+  color: rgb(191, 219, 254);
 }
 
 .details-button {
@@ -136,9 +136,9 @@ p {
   width: 100%;
   padding: 0.75rem;
   margin: 0.5rem 0 1.25rem 0;
-  background: rgba(88, 28, 135, 0.5);
-  color: rgb(232, 121, 249);
-  border: 1px solid rgba(217, 70, 239, 0.3);
+  background: rgba(30, 64, 175, 0.5);
+  color: rgb(56, 189, 248);
+  border: 1px solid rgba(6, 182, 212, 0.3);
   border-radius: 0.375rem;
   font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
@@ -154,8 +154,8 @@ p {
 }
 
 .details-button:hover {
-  background: rgba(107, 33, 168, 0.7);
-  border-color: rgba(217, 70, 239, 0.6);
+  background: rgba(37, 99, 235, 0.7);
+  border-color: rgba(6, 182, 212, 0.6);
   transform: translateY(-2px);
 }
 
@@ -173,11 +173,11 @@ p {
   display: flex;
   justify-content: space-between;
   padding-top: 1rem;
-  border-top: 1px solid rgba(217, 70, 239, 0.15);
+  border-top: 1px solid rgba(6, 182, 212, 0.15);
 }
 
 .action-link {
-  color: rgb(216, 180, 254);
+  color: rgb(147, 197, 253);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -188,7 +188,7 @@ p {
 }
 
 .action-link:not(.disabled):hover {
-  color: rgb(232, 121, 249);
+  color: rgb(56, 189, 248);
 }
 
 .action-link svg {
@@ -197,7 +197,7 @@ p {
 }
 
 .disabled {
-  color: rgba(216, 180, 254, 0.4);
+  color: rgba(147, 197, 253, 0.4);
   cursor: not-allowed;
 }
 
@@ -213,7 +213,7 @@ p {
   left: 50%;
   transform: translateX(-50%);
   padding: 0.5rem 0.75rem;
-  background: rgba(88, 28, 135, 0.95);
+  background: rgba(30, 64, 175, 0.95);
   color: white;
   font-size: 0.75rem;
   border-radius: 0.375rem;
@@ -223,7 +223,7 @@ p {
   transition: all 0.2s;
   pointer-events: none;
   z-index: 10;
-  border: 1px solid rgba(217, 70, 239, 0.3);
+  border: 1px solid rgba(6, 182, 212, 0.3);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -234,7 +234,7 @@ p {
   left: 50%;
   transform: translateX(-50%) translateY(6px);
   border: 6px solid transparent;
-  border-top-color: rgba(88, 28, 135, 0.95);
+  border-top-color: rgba(30, 64, 175, 0.95);
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s;
