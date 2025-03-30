@@ -44,30 +44,6 @@
             background-repeat: no-repeat;
         }
         
-        /* Safari-specific adjustments */
-        @supports (-webkit-touch-callout: none) {
-            body::before {
-                /* Safari-specific fixes to prevent gradient separation */
-                background: -webkit-linear-gradient(315deg, 
-                    #051018 0%, 
-                    #0a1b30 24.9%, 
-                    #0a1b30 25.1%,
-                    #0c2f5e 49.9%, 
-                    #0c2f5e 50.1%,
-                    #0e428c 74.9%, 
-                    #0e428c 75.1%,
-                    #0b203d 100%);
-                
-                /* Ensure it stays perfectly fixed */
-                -webkit-transform: translateZ(0);
-                will-change: transform;
-                
-                /* Prevent any stretching or movement */
-                -webkit-background-size: 100% 100%;
-                background-attachment: fixed;
-            }
-        }
-        
         /* Ensure content appears above the fixed gradient */
         .section, header, footer, main {
             position: relative;
@@ -89,64 +65,6 @@
             position: relative;
             /* Commenting out the animation for better performance */
             /* animation: gradientShift 15s ease infinite; */
-        }
-
-        /* Device-specific background overrides */
-        /* iOS Safari specific */
-        @supports (-webkit-touch-callout: none) {
-            body {
-                /* Use a simplified gradient with color stop positioning adjustments */
-                background: -webkit-linear-gradient(315deg, 
-                    #051018 0%, 
-                    #0a1b30 24.9%, 
-                    #0a1b30 25.1%,
-                    #0c2f5e 49.9%, 
-                    #0c2f5e 50.1%,
-                    #0e428c 74.9%, 
-                    #0e428c 75.1%,
-                    #0b203d 100%);
-                
-                /* Set background properties properly for Safari */
-                -webkit-background-size: 100% 100%;
-                background-size: 100% 100%;
-                background-attachment: fixed;
-                
-                /* Force hardware acceleration to smooth out rendering */
-                -webkit-transform: translateZ(0);
-                -webkit-backface-visibility: hidden;
-            }
-        }
-
-        /* Additional solution if the above doesn't work */
-        @media not all and (min-resolution:.001dpcm) { 
-            @supports (-webkit-appearance:none) {
-                body {
-                    /* Alternative approach: use a single image gradient */
-                    background-image: -webkit-linear-gradient(315deg, 
-                        #051018 0%, 
-                        #0a1b30 25%, 
-                        #0c2f5e 50%, 
-                        #0e428c 75%, 
-                        #0b203d 100%);
-                    background-repeat: no-repeat;
-                    background-attachment: fixed;
-                }
-            }
-        }
-
-        /* iPad specific adjustments */
-        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-            body {
-                /* Adjusted gradient for iPad */
-                background: linear-gradient(135deg, 
-                    #051018 0%, 
-                    #0a1b30 22%, 
-                    #0c2f5e 45%, 
-                    #0e428c 78%, 
-                    #0b203d 100%);
-                -webkit-background-size: cover;
-                background-size: cover;
-            }
         }
 
         /* Mobile phones */
@@ -310,7 +228,7 @@
             background: none !important;
         }
         
-        /* Viewport-following gradient container for most browsers */
+        /* Viewport-following gradient container for all browsers */
         .viewport-gradient {
             position: fixed;
             top: 0;
@@ -328,44 +246,6 @@
                 #0b203d 100%);
             background-size: 100% 100%;
             background-repeat: no-repeat;
-        }
-        
-        /* Enhanced Safari-specific fixes */
-        @supports (-webkit-touch-callout: none) {
-            /* Override any potential issues */
-            .viewport-gradient {
-                /* Force fixed positioning with !important */
-                position: fixed !important;
-                top: 0 !important;
-                left: 0 !important;
-                right: 0 !important;
-                bottom: 0 !important;
-                
-                /* Explicitly set dimensions */
-                width: 100vw !important;
-                height: 100vh !important;
-                
-                /* Force hardware acceleration */
-                -webkit-transform: translateZ(0);
-                transform: translateZ(0);
-                
-                /* Prevent any stretching issues */
-                -webkit-background-size: 100% 100% !important;
-                background-size: 100% 100% !important;
-                
-                /* Safari-specific gradient */
-                background: -webkit-linear-gradient(315deg, 
-                    #051018 0%, 
-                    #0a1b30 25%, 
-                    #0c2f5e 50%, 
-                    #0e428c 75%, 
-                    #0b203d 100%) !important;
-            }
-            
-            /* Ensure z-index stacking works properly */
-            body {
-                position: relative;
-            }
         }
         
         /* Ensure content is positioned properly */
