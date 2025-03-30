@@ -28,13 +28,13 @@
                 #2b0f4e 50%, 
                 #3b1064 75%, 
                 #220b3d 100%);
-            background-size: 400% 400%;
+            background-size: 100% 100%; /* Fixed size instead of 400% 400% */
             background-attachment: fixed;
             color: #e2e8f0;
             font-family: 'Poppins', sans-serif;
             position: relative;
-            /* Subtle animation for background */
-            animation: gradientShift 15s ease infinite;
+            /* Commenting out the animation for better performance */
+            /* animation: gradientShift 15s ease infinite; */
         }
         
         @keyframes gradientShift {

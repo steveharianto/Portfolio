@@ -28,44 +28,52 @@ class ProjectsLoader {
   }
   
   loadProjects(count) {
-    const projectsToLoad = this.allProjects.slice(this.loadedCount, this.loadedCount + count);
-    
-    projectsToLoad.forEach((project, index) => {
-      const projectCard = document.createElement('project-card');
+    // Batch DOM operations to avoid layout thrashing
+    requestAnimationFrame(() => {
+      // Create document fragment to batch DOM operations
+      const fragment = document.createDocumentFragment();
       
-      // Set attributes based on project data
-      projectCard.setAttribute('image', project.image);
-      projectCard.setAttribute('title', project.title);
-      projectCard.setAttribute('description', project.description);
-      projectCard.setAttribute('tags', JSON.stringify(project.tags));
-      projectCard.setAttribute('live-link', project.liveLink);
-      projectCard.setAttribute('code-link', project.codeLink);
-      projectCard.setAttribute('delay', (index * 100).toString());
-      projectCard.setAttribute('project-id', project.id.toString());
+      const projectsToLoad = this.allProjects.slice(this.loadedCount, this.loadedCount + count);
       
-      // Set date information
-      projectCard.setAttribute('start-date', project.startDate);
-      projectCard.setAttribute('end-date', project.endDate);
+      projectsToLoad.forEach((project, index) => {
+        const projectCard = document.createElement('project-card');
+        
+        // Create a project object with all properties
+        const projectProps = {
+          image: project.image,
+          title: project.title,
+          description: project.description,
+          tags: JSON.stringify(project.tags),
+          'live-link': project.liveLink,
+          'code-link': project.codeLink,
+          delay: (index * 100).toString(),
+          'project-id': project.id.toString(),
+          'start-date': project.startDate,
+          'end-date': project.endDate
+        };
+        
+        // Set attributes in a batch
+        Object.entries(projectProps).forEach(([key, value]) => {
+          projectCard.setAttribute(key, value);
+        });
+        
+        // Set boolean attributes
+        if (project.liveDisabled) projectCard.setAttribute('live-disabled', '');
+        if (project.codeDisabled) projectCard.setAttribute('code-disabled', '');
+        
+        // Add to fragment instead of direct DOM
+        fragment.appendChild(projectCard);
+      });
       
-      // Set disabled states
-      if (project.liveDisabled) {
-        projectCard.setAttribute('live-disabled', '');
+      // Single DOM operation to add all cards
+      this.container.appendChild(fragment);
+      this.loadedCount += projectsToLoad.length;
+      
+      // Hide "View More" button if needed
+      if (this.loadedCount >= this.allProjects.length && this.viewMoreBtn) {
+        this.viewMoreBtn.style.display = 'none';
       }
-      
-      if (project.codeDisabled) {
-        projectCard.setAttribute('code-disabled', '');
-      }
-      
-      // Append to container
-      this.container.appendChild(projectCard);
     });
-    
-    this.loadedCount += projectsToLoad.length;
-    
-    // Hide "View More" button if all projects are loaded
-    if (this.loadedCount >= this.allProjects.length && this.viewMoreBtn) {
-      this.viewMoreBtn.style.display = 'none';
-    }
   }
   
   loadMoreProjects() {

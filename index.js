@@ -57,62 +57,100 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('nav a');
     
-    window.addEventListener('scroll', () => {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.pageYOffset >= sectionTop - 200) {
-                current = section.getAttribute('id');
+    // Throttle scroll event
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+
+    // Use Intersection Observer instead of scroll events
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-fuchsia-400');
+                    const href = link.getAttribute('href').substring(1);
+                    if (href === id) {
+                        link.classList.add('text-fuchsia-400');
+                    }
+                });
             }
         });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('text-fuchsia-400');
-            const href = link.getAttribute('href').substring(1);
-            if (href === current) {
-                link.classList.add('text-fuchsia-400');
-            }
-        });
-    });
+    }, observerOptions);
+
+    // Observe all sections
+    sections.forEach(section => observer.observe(section));
     
-    // Add gaming-inspired particle effects
+    // Replace DOM-based particles with Canvas
     function createParticles() {
-        const particleCount = 50;
-        const container = document.body;
+        const canvas = document.createElement('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '-1';
+        document.body.appendChild(canvas);
         
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Random size between 2px and 8px
-            const size = Math.random() * 6 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            // Random position
-            particle.style.left = `${Math.random() * 100}vw`;
-            particle.style.top = `${Math.random() * 100}vh`;
-            
-            // Random color variations
-            const hue = Math.random() > 0.5 ? 328 : 292; // Pink or Purple
-            particle.style.backgroundColor = `hsla(${hue}, 100%, 70%, ${Math.random() * 0.3 + 0.1})`;
-            
-            // Animation
-            particle.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
-            
-            container.appendChild(particle);
-            
-            // Move particles randomly
-            setInterval(() => {
-                const newX = parseFloat(particle.style.left) + (Math.random() * 2 - 1);
-                const newY = parseFloat(particle.style.top) + (Math.random() * 2 - 1);
-                
-                particle.style.left = `${Math.max(0, Math.min(100, newX))}vw`;
-                particle.style.top = `${Math.max(0, Math.min(100, newY))}vh`;
-            }, 5000);
+        const ctx = canvas.getContext('2d');
+        const particles = [];
+        
+        // Create particles data
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 6 + 2,
+                speedX: Math.random() * 0.2 - 0.1,
+                speedY: Math.random() * 0.2 - 0.1,
+                color: `hsla(${Math.random() > 0.5 ? 328 : 292}, 100%, 70%, ${Math.random() * 0.3 + 0.1})`
+            });
         }
+        
+        // Single animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                
+                // Bounds checking
+                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+                
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Handle resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     }
     
     // Call createParticles on load
@@ -128,4 +166,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     `;
     document.head.appendChild(style);
+    
+    // Defer non-critical operations
+    setTimeout(() => {
+        // Load projects after the initial render
+        new ProjectsLoader('projects-container');
+        
+        // Initialize background effects after main content is shown
+        initBackgroundEffects();
+    }, 100);
 });
+
+function initBackgroundEffects() {
+    // Canvas particle system
+    createParticles();
+}
