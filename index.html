@@ -310,50 +310,48 @@
             background: none !important;
         }
         
-        /* Create a viewport-fixed container */
+        /* Viewport-following gradient container for most browsers */
         .viewport-gradient {
-            /* Fixed positioning is key - stays with viewport */
             position: fixed;
-            
-            /* Cover exactly the viewport area */
             top: 0;
             left: 0;
-            width: 100vw;  /* Viewport width */
-            height: 100vh; /* Viewport height */
-            
-            /* Stay behind content */
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
             pointer-events: none;
             
-            /* Clear any inherited properties */
-            margin: 0;
-            padding: 0;
-            
-            /* Standard gradient */
             background: linear-gradient(135deg, 
                 #051018 0%, 
                 #0a1b30 25%, 
                 #0c2f5e 50%, 
                 #0e428c 75%, 
                 #0b203d 100%);
-            
-            /* Explicitly set size to match viewport exactly */
             background-size: 100% 100%;
             background-repeat: no-repeat;
-            background-position: 0 0;
         }
         
-        /* Safari-specific fixes */
+        /* Enhanced Safari-specific fixes */
         @supports (-webkit-touch-callout: none) {
+            /* Override any potential issues */
             .viewport-gradient {
-                /* Use !important to override any inherited styles */
-                height: 100vh !important; 
-                max-height: 100vh !important;
-                overflow: hidden !important;
+                /* Force fixed positioning with !important */
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
                 
-                /* Force the element to stay contained to viewport */
+                /* Explicitly set dimensions */
+                width: 100vw !important;
+                height: 100vh !important;
+                
+                /* Force hardware acceleration */
                 -webkit-transform: translateZ(0);
-                -webkit-backface-visibility: hidden;
+                transform: translateZ(0);
+                
+                /* Prevent any stretching issues */
+                -webkit-background-size: 100% 100% !important;
+                background-size: 100% 100% !important;
                 
                 /* Safari-specific gradient */
                 background: -webkit-linear-gradient(315deg, 
@@ -361,16 +359,12 @@
                     #0a1b30 25%, 
                     #0c2f5e 50%, 
                     #0e428c 75%, 
-                    #0b203d 100%);
-                
-                /* Force background size to match viewport exactly */
-                -webkit-background-size: 100% 100% !important;
-                background-size: 100% 100% !important;
+                    #0b203d 100%) !important;
             }
             
-            /* Override any body height settings that might cause stretching */
+            /* Ensure z-index stacking works properly */
             body {
-                min-height: initial !important;
+                position: relative;
             }
         }
         
@@ -675,5 +669,40 @@
     
     <!-- Main JavaScript -->
     <script src="index.js" defer></script>
+
+    <!-- Add this script at the end of your body to enforce the behavior in Safari -->
+    <script>
+        // Safari-specific fix to ensure the gradient stays fixed to viewport
+        function fixSafariGradient() {
+            const isIOS = /iPad|iPhone|iPod|Mac/.test(navigator.userAgent);
+            const isWebKit = 'WebkitAppearance' in document.documentElement.style;
+            
+            if (isIOS || isWebKit) {
+                const gradient = document.querySelector('.viewport-gradient');
+                
+                // Force position:fixed behavior
+                gradient.style.position = 'fixed';
+                gradient.style.top = '0';
+                gradient.style.left = '0';
+                gradient.style.width = '100vw';
+                gradient.style.height = '100vh';
+                gradient.style.zIndex = '-1';
+                
+                // Force proper stacking context
+                document.body.style.position = 'relative';
+                document.body.style.zIndex = '0';
+                
+                // Apply on resize to maintain consistency
+                window.addEventListener('resize', () => {
+                    gradient.style.width = '100vw';
+                    gradient.style.height = '100vh';
+                });
+            }
+        }
+        
+        // Run on page load
+        document.addEventListener('DOMContentLoaded', fixSafariGradient);
+        window.addEventListener('load', fixSafariGradient);
+    </script>
 </body>
 </html>
