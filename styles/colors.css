@@ -1,0 +1,125 @@
+/**
+ * Portfolio Color System
+ * ---------------------
+ * This file contains all color variables used throughout the portfolio.
+ * To change the color scheme, modify the variables in the :root section.
+ */
+
+:root {
+  /* Primary colors */
+  --color-primary: #38bdf8;          /* Cyan - Primary accent color */
+  --color-primary-light: #67e8f9;    /* Light Cyan - Secondary highlights */  
+  --color-primary-dark: #0ea5e9;     /* Teal - Dark accents */
+  
+  /* Background colors */
+  --color-bg-darkest: #051018;       /* Darkest background shade */
+  --color-bg-dark: #0a1b30;          /* Main dark background color */
+  --color-bg-medium: #0c2f5e;        /* Medium background */
+  --color-bg-light: #0e428c;         /* Lighter background */
+  --color-bg-lightest: #0b203d;      /* Lightest background shade */
+  
+  /* Text colors */
+  --color-text-primary: #38bdf8;     /* Primary text highlight color */
+  --color-text-secondary: #93c5fd;   /* Secondary text highlight */
+  --color-text: #d1d5db;             /* Regular text color */
+  --color-text-light: #ffffff;       /* White text */
+  
+  /* Status colors */
+  --color-success: #22c55e;          /* Green for success/ongoing status */
+  --color-warning: #f59e0b;          /* Optional - warning state */
+  --color-error: #ef4444;            /* Optional - error state */
+  
+  /* Card and UI components */
+  --color-card-bg: rgba(10, 27, 48, 0.4);
+  --color-card-border: rgba(6, 182, 212, 0.2);
+  --color-card-hover-border: rgba(6, 182, 212, 0.4);
+  
+  /* Tag colors */
+  --color-tag-bg: rgba(30, 64, 175, 0.5);
+  --color-tag-text: rgb(147, 197, 253);
+  --color-tag-hover-bg: rgba(37, 99, 235, 0.6);
+  --color-tag-hover-text: rgb(191, 219, 254);
+  
+  /* Button colors */
+  --color-button-gradient-from: rgb(14, 165, 233);  /* from-cyan-600 */
+  --color-button-gradient-to: rgb(2, 132, 199);     /* to-sky-600 */
+  --color-button-hover-from: rgb(6, 182, 212);      /* hover:from-cyan-500 */
+  --color-button-hover-to: rgb(14, 165, 233);       /* hover:to-sky-500 */
+  
+  /* Status badges */
+  --color-status-ongoing-bg: rgba(34, 197, 94, 0.15);
+  --color-status-ongoing-text: rgb(34, 197, 94);
+  --color-status-completed-bg: rgba(14, 165, 233, 0.2);
+  --color-status-completed-text: rgb(103, 232, 249);
+  
+  /* Shadows */
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(6, 182, 212, 0.2);
+  --shadow-card-hover: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.4);
+  --shadow-button: 0 4px 10px rgba(6, 182, 212, 0.2);
+  
+  /* Opacity values for consistency */
+  --opacity-full: 1;
+  --opacity-high: 0.9;
+  --opacity-medium: 0.6;
+  --opacity-low: 0.4;
+  --opacity-subtle: 0.2;
+  --opacity-faint: 0.1;
+  
+  /* Gradients */
+  --gradient-background: linear-gradient(135deg, 
+    var(--color-bg-darkest) 0%, 
+    var(--color-bg-dark) 25%, 
+    var(--color-bg-medium) 50%, 
+    var(--color-bg-light) 75%, 
+    var(--color-bg-lightest) 100%);
+    
+  --gradient-button: linear-gradient(to right, 
+    var(--color-button-gradient-from), 
+    var(--color-button-gradient-to));
+    
+  --gradient-button-hover: linear-gradient(to right, 
+    var(--color-button-hover-from), 
+    var(--color-button-hover-to));
+    
+  --gradient-overlay: linear-gradient(to top, 
+    rgba(10, 27, 48, 0.9) 0%, 
+    rgba(10, 27, 48, 0.5) 50%, 
+    rgba(10, 27, 48, 0) 100%);
+    
+  /* Particle colors */
+  --color-particle-hue-1: 195;  /* First particle hue */
+  --color-particle-hue-2: 210;  /* Second particle hue */
+}
+
+/* Utility classes for direct use in HTML */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-default { color: var(--color-text); }
+.text-white { color: var(--color-text-light); }
+.text-success { color: var(--color-success); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-dark { background-color: var(--color-bg-dark); }
+.bg-card { background-color: var(--color-card-bg); }
+
+.gradient-bg { background: var(--gradient-background); }
+.gradient-btn { background: var(--gradient-button); }
+.gradient-text {
+  background: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+}
+
+/* Border utility classes */
+.border-primary { border-color: var(--color-card-border); }
+.hover-border-primary:hover { border-color: var(--color-card-hover-border); }
+
+/* Preset opacity utility classes */
+.bg-primary-80 { background-color: rgba(56, 189, 248, 0.8); }
+.bg-primary-50 { background-color: rgba(56, 189, 248, 0.5); }
+.bg-primary-30 { background-color: rgba(56, 189, 248, 0.3); }
+.bg-dark-80 { background-color: rgba(10, 27, 48, 0.8); }
+.bg-dark-50 { background-color: rgba(10, 27, 48, 0.5); }
+.bg-dark-30 { background-color: rgba(10, 27, 48, 0.3); } 
