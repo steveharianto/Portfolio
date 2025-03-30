@@ -14,10 +14,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom styles -->
     <style>
-        /* Ensure the gradient shows through all content */
-        html, body {
-            height: 100%;
-            margin: 0;
+        /* Base gradient for all browsers */
+        body {
+            background: linear-gradient(135deg, 
+                #051018 0%, 
+                #0a1b30 25%, 
+                #0c2f5e 50%, 
+                #0e428c 75%, 
+                #0b203d 100%);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Works in most browsers */
+        }
+        
+        /* Safari-specific fix for fixed background */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                /* Remove fixed attachment for iOS Safari which doesn't support it properly */
+                background-attachment: scroll;
+                
+                /* Instead, we'll use a pseudo-element with fixed positioning */
+                position: relative;
+            }
+            
+            /* Add a pseudo-element that covers the entire viewport */
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                
+                /* Apply the same gradient */
+                background: linear-gradient(135deg, 
+                    #051018 0%, 
+                    #0a1b30 25%, 
+                    #0c2f5e 50%, 
+                    #0e428c 75%, 
+                    #0b203d 100%);
+                background-size: 100% 100%;
+                
+                /* Fix for the gradient separation in Safari */
+                -webkit-background-size: 100% 100%;
+                
+                /* This prevents any scrolling effect from happening */
+                -webkit-transform: translateZ(0);
+                will-change: transform;
+            }
+            
+            /* Ensure content is positioned above the background */
+            .section, header, footer {
+                position: relative;
+                z-index: 1;
+            }
         }
         
         body {
