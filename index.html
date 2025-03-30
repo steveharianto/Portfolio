@@ -41,18 +41,42 @@
         /* iOS Safari specific */
         @supports (-webkit-touch-callout: none) {
             body {
-                /* Simplified gradient for iOS Safari */
-                background: linear-gradient(135deg, 
+                /* Use a simplified gradient with color stop positioning adjustments */
+                background: -webkit-linear-gradient(315deg, 
                     #051018 0%, 
-                    #0a1b30 20%, 
-                    #0c2f5e 40%, 
-                    #0e428c 60%, 
+                    #0a1b30 24.9%, 
+                    #0a1b30 25.1%,
+                    #0c2f5e 49.9%, 
+                    #0c2f5e 50.1%,
+                    #0e428c 74.9%, 
+                    #0e428c 75.1%,
                     #0b203d 100%);
-                /* Set explicit background properties to enforce consistency */
-                background-attachment: fixed;
-                background-size: 100% 100%;
-                /* Using webkit-specific properties for better iOS compatibility */
+                
+                /* Set background properties properly for Safari */
                 -webkit-background-size: 100% 100%;
+                background-size: 100% 100%;
+                background-attachment: fixed;
+                
+                /* Force hardware acceleration to smooth out rendering */
+                -webkit-transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+            }
+        }
+
+        /* Additional solution if the above doesn't work */
+        @media not all and (min-resolution:.001dpcm) { 
+            @supports (-webkit-appearance:none) {
+                body {
+                    /* Alternative approach: use a single image gradient */
+                    background-image: -webkit-linear-gradient(315deg, 
+                        #051018 0%, 
+                        #0a1b30 25%, 
+                        #0c2f5e 50%, 
+                        #0e428c 75%, 
+                        #0b203d 100%);
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                }
             }
         }
 

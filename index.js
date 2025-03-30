@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show success message
             contactForm.innerHTML = `
                 <div class="text-center py-8">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-fuchsia-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-cyan-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <h3 class="text-2xl font-bold text-fuchsia-400 mb-2">Message Sent!</h3>
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-2">Message Sent!</h3>
                     <p class="text-white mb-6">Thanks for reaching out. I'll get back to you soon!</p>
-                    <button type="button" class="neon-button bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-6 py-2 rounded-full">
+                    <button type="button" class="neon-button bg-gradient-to-r from-cyan-600 to-sky-600 text-white px-6 py-2 rounded-full">
                         Send Another Message
                     </button>
                 </div>
@@ -83,10 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
                 navLinks.forEach(link => {
-                    link.classList.remove('text-fuchsia-400');
+                    link.classList.remove('text-cyan-400');
                     const href = link.getAttribute('href').substring(1);
                     if (href === id) {
-                        link.classList.add('text-fuchsia-400');
+                        link.classList.add('text-cyan-400');
                     }
                 });
             }
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 size: Math.random() * 6 + 2,
                 speedX: Math.random() * 0.2 - 0.1,
                 speedY: Math.random() * 0.2 - 0.1,
-                color: `hsla(${Math.random() > 0.5 ? 328 : 292}, 100%, 70%, ${Math.random() * 0.3 + 0.1})`
+                color: `hsla(${Math.random() > 0.5 ? 195 : 210}, 100%, 70%, ${Math.random() * 0.3 + 0.1})`
             });
         }
         
