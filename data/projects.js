@@ -2,32 +2,37 @@
 const projectsData = [
     {
         id: 1,
-        image: "https://via.placeholder.com/600x400",
-        title: "Project Title 1",
-        description: "A brief description of the project, highlighting key features and technologies used.",
-        tags: ["Flutter", "Firebase", "Dart"],
-        liveLink: "#",
-        codeLink: "#",
-        liveDisabled: false,
-        codeDisabled: false,
-        startDate: "January 2023",
-        endDate: "March 2023",
+        image: "/images/project001/thumbnail.png",
+        title: "Ngoper Website",
+        description: "A shipping platform that utilizes excess baggage space from airline passengers to deliver goods at affordable prices with faster delivery times.",
+        tags: ["React", "TypeScript", "Firebase", "Tailwind CSS", "React Router"],
+        liveLink: "https://ngoper.com",
+        codeLink: "https://github.com/steveharianto/ngoper_website",
+        liveDisabled: true,
+        codeDisabled: true,
+        startDate: "June 2023",
+        endDate: "August 2023",
         details: {
-            overview: "An in-depth description of the project, its goals, and the problems it solves. Here you can explain the project's background, purpose, and the value it provides to users.",
-            challenge: "The challenges faced during the development process and how they were overcome. This could include technical challenges, design issues, or scope management problems.",
-            solution: "The solution implemented to address the challenges and meet the project requirements. This could include the architecture, design patterns, and technologies used.",
-            outcome: "The results of the project, including metrics, user feedback, and lessons learned. This section can highlight the project's success and its impact.",
+            overview: "Ngoper is a web application that connects people who want to ship items with airline passengers who have excess baggage capacity. This system allows for cheaper and faster intercity shipping by utilizing remaining baggage capacity on regular flights. The project includes an informative landing page, registration system, and basic security features.",
+            challenge: "The main challenge was designing a UI/UX that made it easy for users to understand the new concept of passenger baggage-based shipping. Additionally, ensuring responsive and consistent display across various devices and integrating Firebase for authentication and database systems presented their own challenges.",
+            solution: "I implemented a modular design with Tailwind CSS and React to ensure a responsive and maintainable UI. Components were well-structured to facilitate future development. Firebase Firestore was used to store user data, with appropriate security rules implemented to protect sensitive information.",
+            outcome: "The Ngoper website successfully presents innovative shipping service information with a professional and modern appearance. The registration system works well, allowing for the collection of prospective user data for the next development phase. The consumer database grows consistently through the signup form integrated with Firebase.",
             images: [
-                "https://via.placeholder.com/800x500",
-                "https://via.placeholder.com/800x500",
-                "https://via.placeholder.com/800x500"
+                "/images/project001/thumbnail.png",
+                "/images/project001/page1.png",
+                "/images/project001/page2.png",
+                "/images/project001/page3.png",
+                "/images/project001/page4.png",
+                "/images/project001/page5.png"
             ],
             features: [
-                "Feature 1: Description of feature 1",
-                "Feature 2: Description of feature 2",
-                "Feature 3: Description of feature 3"
+                "Landing Page: Informative main page with explanations of Ngoper services and the added value offered",
+                "Registration Form: Signup form with input validation and Firebase integration to store user data",
+                "Responsive: Fully responsive design for mobile, tablet, and desktop",
+                "Product Information: Service detail pages explaining how it works and the benefits of using Ngoper",
+                "Contact & Social Media: Contact information and integration with company social media"
             ],
-            role: "Lead Developer"
+            role: "Frontend Developer & UI/UX Designer"
         }
     },
     {

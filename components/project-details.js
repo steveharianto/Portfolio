@@ -130,8 +130,8 @@ class ProjectDetailsModal {
               </svg>
             </button>
             
-            <div class="w-full h-48 md:h-64 overflow-hidden">
-              <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+            <div class="w-full h-48 md:h-64 overflow-hidden flex items-center justify-center bg-purple-900/50">
+              <img src="${project.image}" alt="${project.title}" class="max-w-full max-h-full w-auto h-auto object-contain">
               <div class="absolute inset-0 bg-gradient-to-t from-purple-900 to-transparent opacity-70"></div>
             </div>
             
@@ -272,8 +272,8 @@ class ProjectDetailsModal {
               </svg>
             </button>
             
-            <div class="w-full h-48 md:h-64 overflow-hidden">
-              <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+            <div class="w-full h-48 md:h-64 overflow-hidden flex items-center justify-center bg-purple-900/50">
+              <img src="${project.image}" alt="${project.title}" class="max-w-full max-h-full w-auto h-auto object-contain">
               <div class="absolute inset-0 bg-gradient-to-t from-purple-900 to-transparent opacity-70"></div>
             </div>
             
