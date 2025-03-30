@@ -107,6 +107,7 @@
   object-fit: contain;
 }
 
+/* Gallery image container with hover effect */
 .project-gallery-item {
   height: 16rem;
   display: flex;
@@ -114,12 +115,127 @@
   justify-content: center;
   background-color: rgba(88, 28, 135, 0.3);
   border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.project-gallery-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(88, 28, 135, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-gallery-item:hover::after {
+  opacity: 1;
 }
 
 .project-gallery-item img {
   max-width: 100%;
   max-height: 100%;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   object-fit: contain;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.project-gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+/* Lightbox styles */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  cursor: zoom-out;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.lightbox.active .lightbox-content {
+  transform: scale(1);
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.lightbox-close:hover {
+  background-color: rgba(88, 28, 135, 0.7);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.lightbox-nav:hover {
+  background-color: rgba(88, 28, 135, 0.7);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
 } 

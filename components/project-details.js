@@ -5,6 +5,9 @@ class ProjectDetailsModal {
     this.modal = null;
     this.currentProject = null;
     this.renderedProjects = new Map(); // Cache for rendered projects
+    this.lightbox = null;
+    this.currentImageIndex = 0;
+    this.images = [];
     this.createModalElement();
     this.setupCloseEvents();
   }
@@ -87,6 +90,11 @@ class ProjectDetailsModal {
       this.modal.classList.add('hidden');
       document.body.style.overflow = '';
     }, 300);
+    
+    // Clean up lightbox if it exists
+    if (this.lightbox && this.lightbox.classList.contains('active')) {
+      this.closeLightbox();
+    }
   }
 
   renderProjectDetails() {
@@ -104,8 +112,8 @@ class ProjectDetailsModal {
     </li>`).join('');
     
     const imagesHTML = project.details.images.map(img => `
-      <div class="w-full p-2">
-        <img src="${img}" alt="${project.title}" class="w-full h-auto rounded-lg shadow-lg object-cover">
+      <div class="w-full p-2 project-gallery-item">
+        <img src="${img}" alt="${project.title}" loading="lazy" class="rounded-lg shadow-lg">
       </div>
     `).join('');
     
@@ -173,31 +181,35 @@ class ProjectDetailsModal {
               </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <h3 class="text-xl font-bold mb-3 text-fuchsia-400">The Challenge</h3>
-                <p class="text-gray-300">${project.details.challenge}</p>
-              </div>
-              
-              <div>
-                <h3 class="text-xl font-bold mb-3 text-fuchsia-400">The Solution</h3>
-                <p class="text-gray-300">${project.details.solution}</p>
-              </div>
-            </div>
-            
             <div class="mb-6">
               <h3 class="text-xl font-bold mb-3 text-fuchsia-400">Key Features</h3>
-              <ul class="text-gray-300 grid grid-cols-1 md:grid-cols-2 gap-x-4">
+              <ul class="text-gray-300 grid grid-cols-1 md:grid-cols-2 gap-4">
                 ${featuresHTML}
               </ul>
             </div>
             
-            <div class="mb-6">
-              <h3 class="text-xl font-bold mb-3 text-fuchsia-400">Outcome</h3>
-              <p class="text-gray-300">${project.details.outcome}</p>
-            </div>
-            
             ${imagesGrid}
+            
+            <div class="mt-10 mb-6 pt-6 border-t border-fuchsia-500/20">
+              <h3 class="text-xl font-bold mb-5 text-fuchsia-400">Development Story</h3>
+              
+              <div class="grid grid-cols-1 gap-6 mb-6">
+                <div>
+                  <h4 class="text-lg font-bold mb-2 text-fuchsia-300">The Challenge</h4>
+                  <p class="text-gray-300">${project.details.challenge}</p>
+                </div>
+                
+                <div>
+                  <h4 class="text-lg font-bold mb-2 text-fuchsia-300">The Solution</h4>
+                  <p class="text-gray-300">${project.details.solution}</p>
+                </div>
+                
+                <div>
+                  <h4 class="text-lg font-bold mb-2 text-fuchsia-300">Outcome</h4>
+                  <p class="text-gray-300">${project.details.outcome}</p>
+                </div>
+              </div>
+            </div>
             
             <div class="flex justify-between items-center mt-8 pt-4 border-t border-fuchsia-500/20">
               <div>
@@ -246,8 +258,8 @@ class ProjectDetailsModal {
     </li>`).join('');
     
     const imagesHTML = project.details.images.map(img => `
-      <div class="w-full p-2">
-        <img src="${img}" alt="${project.title}" class="w-full h-auto rounded-lg shadow-lg object-cover">
+      <div class="w-full p-2 project-gallery-item">
+        <img src="${img}" alt="${project.title}" loading="lazy" class="rounded-lg shadow-lg">
       </div>
     `).join('');
     
@@ -315,31 +327,35 @@ class ProjectDetailsModal {
               </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <h3 class="text-xl font-bold mb-3 text-fuchsia-400">The Challenge</h3>
-                <p class="text-gray-300">${project.details.challenge}</p>
-              </div>
-              
-              <div>
-                <h3 class="text-xl font-bold mb-3 text-fuchsia-400">The Solution</h3>
-                <p class="text-gray-300">${project.details.solution}</p>
-              </div>
-            </div>
-            
             <div class="mb-6">
               <h3 class="text-xl font-bold mb-3 text-fuchsia-400">Key Features</h3>
-              <ul class="text-gray-300 grid grid-cols-1 md:grid-cols-2 gap-x-4">
+              <ul class="text-gray-300 grid grid-cols-1 md:grid-cols-2 gap-4">
                 ${featuresHTML}
               </ul>
             </div>
             
-            <div class="mb-6">
-              <h3 class="text-xl font-bold mb-3 text-fuchsia-400">Outcome</h3>
-              <p class="text-gray-300">${project.details.outcome}</p>
-            </div>
-            
             ${imagesGrid}
+            
+            <div class="mt-10 mb-6 pt-6 border-t border-fuchsia-500/20">
+              <h3 class="text-xl font-bold mb-5 text-fuchsia-400">Development Story</h3>
+              
+              <div class="grid grid-cols-1 gap-6 mb-6">
+                <div>
+                  <h4 class="text-lg font-bold mb-2 text-fuchsia-300">The Challenge</h4>
+                  <p class="text-gray-300">${project.details.challenge}</p>
+                </div>
+                
+                <div>
+                  <h4 class="text-lg font-bold mb-2 text-fuchsia-300">The Solution</h4>
+                  <p class="text-gray-300">${project.details.solution}</p>
+                </div>
+                
+                <div>
+                  <h4 class="text-lg font-bold mb-2 text-fuchsia-300">Outcome</h4>
+                  <p class="text-gray-300">${project.details.outcome}</p>
+                </div>
+              </div>
+            </div>
             
             <div class="flex justify-between items-center mt-8 pt-4 border-t border-fuchsia-500/20">
               <div>
@@ -371,7 +387,150 @@ class ProjectDetailsModal {
   }
 
   setupModalEvents() {
-    // Existing setupModalEvents method
+    const modal = this.modal;
+    
+    // Setup close button event
+    const closeButton = modal.querySelector('#close-modal');
+    if (closeButton) {
+      closeButton.addEventListener('click', () => this.closeModal());
+    }
+    
+    // Setup gallery image clicks
+    const galleryItems = modal.querySelectorAll('.project-gallery-item');
+    if (galleryItems.length > 0) {
+      this.images = Array.from(galleryItems).map(item => {
+        const img = item.querySelector('img');
+        return img ? img.src : null;
+      }).filter(Boolean);
+      
+      galleryItems.forEach((item, index) => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.openLightbox(index);
+        });
+      });
+    }
+  }
+  
+  openLightbox(index) {
+    if (!this.lightbox) {
+      this.createLightbox();
+    }
+    
+    this.currentImageIndex = index;
+    this.updateLightboxImage();
+    
+    this.lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+  }
+  
+  closeLightbox() {
+    if (this.lightbox) {
+      this.lightbox.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
+  }
+  
+  createLightbox() {
+    // Create lightbox element only once when needed (lazy initialization)
+    this.lightbox = document.createElement('div');
+    this.lightbox.className = 'lightbox';
+    this.lightbox.innerHTML = `
+      <div class="lightbox-close">×</div>
+      <div class="lightbox-nav lightbox-prev">❮</div>
+      <div class="lightbox-nav lightbox-next">❯</div>
+      <div class="lightbox-content">
+        <img class="lightbox-image" src="" alt="Project Image">
+      </div>
+    `;
+    
+    document.body.appendChild(this.lightbox);
+    
+    // Setup lightbox event listeners
+    const close = this.lightbox.querySelector('.lightbox-close');
+    const content = this.lightbox.querySelector('.lightbox-content');
+    const prev = this.lightbox.querySelector('.lightbox-prev');
+    const next = this.lightbox.querySelector('.lightbox-next');
+    
+    // Close on click outside image
+    this.lightbox.addEventListener('click', (e) => {
+      if (e.target === this.lightbox || e.target === content) {
+        this.closeLightbox();
+      }
+    });
+    
+    // Close button
+    close.addEventListener('click', () => this.closeLightbox());
+    
+    // Navigation
+    prev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.prevImage();
+    });
+    
+    next.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.nextImage();
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+  
+  handleKeyDown(e) {
+    if (!this.lightbox || !this.lightbox.classList.contains('active')) return;
+    
+    switch (e.key) {
+      case 'Escape':
+        this.closeLightbox();
+        break;
+      case 'ArrowLeft':
+        this.prevImage();
+        break;
+      case 'ArrowRight':
+        this.nextImage();
+        break;
+    }
+  }
+  
+  prevImage() {
+    if (this.images.length <= 1) return;
+    
+    this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
+    this.updateLightboxImage();
+  }
+  
+  nextImage() {
+    if (this.images.length <= 1) return;
+    
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+    this.updateLightboxImage();
+  }
+  
+  updateLightboxImage() {
+    if (!this.lightbox) return;
+    
+    const image = this.lightbox.querySelector('.lightbox-image');
+    if (image && this.images[this.currentImageIndex]) {
+      // Use the Dataset API to store the current src for comparison
+      const currentSrc = image.dataset.src;
+      const newSrc = this.images[this.currentImageIndex];
+      
+      // Only update if the source has changed (optimization)
+      if (currentSrc !== newSrc) {
+        // Apply loading state
+        image.style.opacity = '0.5';
+        
+        // Update the image
+        image.src = newSrc;
+        image.dataset.src = newSrc;
+        
+        // Remove loading state once loaded
+        image.onload = () => {
+          image.style.opacity = '1';
+        };
+      }
+    }
   }
 }
 

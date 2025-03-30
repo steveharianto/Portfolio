@@ -19,11 +19,11 @@ const projectsData = [
             outcome: "The Ngoper website successfully presents innovative shipping service information with a professional and modern appearance. The registration system works well, allowing for the collection of prospective user data for the next development phase. The consumer database grows consistently through the signup form integrated with Firebase.",
             images: [
                 "/images/project001/thumbnail.png",
-                "/images/project001/page1.png",
-                "/images/project001/page2.png",
-                "/images/project001/page3.png",
-                "/images/project001/page4.png",
-                "/images/project001/page5.png"
+                "/images/project001/page1.jpeg",
+                "/images/project001/page2.jpeg",
+                "/images/project001/page3.jpeg",
+                "/images/project001/page4.jpeg",
+                "/images/project001/page5.jpeg"
             ],
             features: [
                 "Landing Page: Informative main page with explanations of Ngoper services and the added value offered",
