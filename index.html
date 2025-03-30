@@ -36,6 +36,52 @@
             /* Commenting out the animation for better performance */
             /* animation: gradientShift 15s ease infinite; */
         }
+
+        /* Device-specific background overrides */
+        /* iOS Safari specific */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                /* Simplified gradient for iOS Safari */
+                background: linear-gradient(135deg, 
+                    #051018 0%, 
+                    #0a1b30 20%, 
+                    #0c2f5e 40%, 
+                    #0e428c 60%, 
+                    #0b203d 100%);
+                /* Set explicit background properties to enforce consistency */
+                background-attachment: fixed;
+                background-size: 100% 100%;
+                /* Using webkit-specific properties for better iOS compatibility */
+                -webkit-background-size: 100% 100%;
+            }
+        }
+
+        /* iPad specific adjustments */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            body {
+                /* Adjusted gradient for iPad */
+                background: linear-gradient(135deg, 
+                    #051018 0%, 
+                    #0a1b30 22%, 
+                    #0c2f5e 45%, 
+                    #0e428c 78%, 
+                    #0b203d 100%);
+                -webkit-background-size: cover;
+                background-size: cover;
+            }
+        }
+
+        /* Mobile phones */
+        @media only screen and (max-width: 767px) {
+            body {
+                /* Simpler gradient with fewer stops for mobile */
+                background: linear-gradient(135deg, 
+                    #051018 0%, 
+                    #0a1b30 30%, 
+                    #0e428c 70%, 
+                    #0b203d 100%);
+            }
+        }
         
         @keyframes gradientShift {
             0% { background-position: 0% 50% }
