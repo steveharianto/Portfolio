@@ -14,61 +14,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom styles -->
     <style>
-        /* Base gradient for all browsers */
+        /* Base styles for all browsers */
         body {
+            position: relative;
+            color: #e2e8f0;
+            font-family: 'Poppins', sans-serif;
+            /* Remove any background here to avoid conflicts */
+            background: none;
+        }
+        
+        /* Create a fixed viewport-sized gradient container for all browsers */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh; /* Viewport height - exactly what's visible on screen */
+            z-index: -1;
             background: linear-gradient(135deg, 
                 #051018 0%, 
                 #0a1b30 25%, 
                 #0c2f5e 50%, 
                 #0e428c 75%, 
                 #0b203d 100%);
+            
+            /* Ensure gradient covers exactly one viewport without stretching */
             background-size: 100% 100%;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Works in most browsers */
         }
         
-        /* Safari-specific fix for fixed background */
+        /* Safari-specific adjustments */
         @supports (-webkit-touch-callout: none) {
-            body {
-                /* Remove fixed attachment for iOS Safari which doesn't support it properly */
-                background-attachment: scroll;
-                
-                /* Instead, we'll use a pseudo-element with fixed positioning */
-                position: relative;
-            }
-            
-            /* Add a pseudo-element that covers the entire viewport */
             body::before {
-                content: "";
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: -1;
-                
-                /* Apply the same gradient */
-                background: linear-gradient(135deg, 
+                /* Safari-specific fixes to prevent gradient separation */
+                background: -webkit-linear-gradient(315deg, 
                     #051018 0%, 
-                    #0a1b30 25%, 
-                    #0c2f5e 50%, 
-                    #0e428c 75%, 
+                    #0a1b30 24.9%, 
+                    #0a1b30 25.1%,
+                    #0c2f5e 49.9%, 
+                    #0c2f5e 50.1%,
+                    #0e428c 74.9%, 
+                    #0e428c 75.1%,
                     #0b203d 100%);
-                background-size: 100% 100%;
                 
-                /* Fix for the gradient separation in Safari */
-                -webkit-background-size: 100% 100%;
-                
-                /* This prevents any scrolling effect from happening */
+                /* Ensure it stays perfectly fixed */
                 -webkit-transform: translateZ(0);
                 will-change: transform;
+                
+                /* Prevent any stretching or movement */
+                -webkit-background-size: 100% 100%;
+                background-attachment: fixed;
             }
-            
-            /* Ensure content is positioned above the background */
-            .section, header, footer {
-                position: relative;
-                z-index: 1;
-            }
+        }
+        
+        /* Ensure content appears above the fixed gradient */
+        .section, header, footer, main {
+            position: relative;
+            z-index: 1;
         }
         
         body {
