@@ -1,644 +1,1166 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Steven Harianto - Portfolio</title>
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- AOS Animation Library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Custom styles -->
     <style>
-        /* Base styles for all browsers */
-        body {
-            position: relative;
-            color: #e2e8f0;
-            font-family: 'Poppins', sans-serif;
-            /* Remove any background here to avoid conflicts */
-            background: none;
-        }
-        
-        /* Create a fixed viewport-sized gradient container for all browsers */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh; /* Viewport height - exactly what's visible on screen */
-            z-index: -1;
-            background: linear-gradient(135deg, 
-                #051018 0%, 
-                #0a1b30 25%, 
-                #0c2f5e 50%, 
-                #0e428c 75%, 
-                #0b203d 100%);
-            
-            /* Ensure gradient covers exactly one viewport without stretching */
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-        }
-        
-        /* Ensure content appears above the fixed gradient */
-        .section, header, footer, main {
-            position: relative;
-            z-index: 1;
-        }
-        
-        body {
-            /* Rich gradient that transitions through various blue tones */
-            background: linear-gradient(135deg, 
-                #051018 0%, 
-                #0a1b30 25%, 
-                #0c2f5e 50%, 
-                #0e428c 75%, 
-                #0b203d 100%);
-            background-size: 100% 100%; /* Fixed size instead of 400% 400% */
-            background-attachment: fixed;
-            color: #e2e8f0;
-            font-family: 'Poppins', sans-serif;
-            position: relative;
-            /* Commenting out the animation for better performance */
-            /* animation: gradientShift 15s ease infinite; */
-        }
+      /* Base styles for all browsers */
+      body {
+        position: relative;
+        color: #e2e8f0;
+        font-family: "Poppins", sans-serif;
+        /* Remove any background here to avoid conflicts */
+        background: none;
+      }
 
-        /* Mobile phones */
-        @media only screen and (max-width: 767px) {
-            body {
-                /* Simpler gradient with fewer stops for mobile */
-                background: linear-gradient(135deg, 
-                    #051018 0%, 
-                    #0a1b30 30%, 
-                    #0e428c 70%, 
-                    #0b203d 100%);
-            }
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50% }
-            50% { background-position: 100% 50% }
-            100% { background-position: 0% 50% }
-        }
-        
-        .section {
-            scroll-margin-top: 5rem;
-            position: relative;
-            background: transparent; /* Ensure all sections are transparent */
-            z-index: 1;
-        }
-        
-        /* Add smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-        }
-        
-        /* Fixed typewriter animation */
-        .typewriter-container {
-            display: inline-block;
-            margin: 0 auto;
-        }
-        .typing-animation {
-            overflow: hidden;
-            display: inline-block;
-            border-right: .15em solid #38bdf8;
-            white-space: nowrap;
-            margin: 0 auto;
-            width: 0;
-            animation: 
-                typing 3.5s steps(30, end) forwards,
-                blink-caret .75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #38bdf8 }
-        }
-        
-        .gradient-text {
-            background: linear-gradient(to right, #38bdf8, #0ea5e9);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
-        }
-        
-        .tech-card {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
-        }
-        
-        .tech-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
-            border-color: rgba(6, 182, 212, 0.6);
-        }
-        
-        .tech-icon {
-            filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.6));
-        }
-        
-        /* Glass effect for cards */
-        .glass-card {
-            background: rgba(10, 27, 48, 0.4);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 15px rgba(6, 182, 212, 0.2);
-        }
-        
-        /* Neon button effect */
-        .neon-button {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .neon-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.4), transparent);
-            transition: 0.5s;
-        }
-        
-        .neon-button:hover::before {
-            left: 100%;
-        }
-        
-        /* Gaming-inspired decorative elements */
-        .gaming-icon {
-            position: absolute;
-            opacity: 0.1;
-            filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.8));
-            z-index: 0;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-        
-        /* Glowing border */
-        .glow-border {
-            position: relative;
-        }
-        
-        .glow-border::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 2px solid transparent;
-            border-radius: inherit;
-            background: linear-gradient(45deg, #38bdf8, transparent, #0ea5e9, transparent) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: destination-out;
-            mask-composite: exclude;
-            animation: borderGlow 3s linear infinite;
-        }
-        
-        @keyframes borderGlow {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
-        }
+      /* Create a fixed viewport-sized gradient container for all browsers */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* Viewport height - exactly what's visible on screen */
+        z-index: -1;
+        background: linear-gradient(
+          135deg,
+          #040e1b 0%,
+          #0a1e3c 25%,
+          #0d47a1 50%,
+          #1565c0 75%,
+          #0d2352 100%
+        );
 
-        /* Remove any existing background */
-        html, body {
-            background: none !important;
+        /* Ensure gradient covers exactly one viewport without stretching */
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+
+      /* Ensure content appears above the fixed gradient */
+      .section,
+      header,
+      footer,
+      main {
+        position: relative;
+        z-index: 1;
+      }
+
+      body {
+        /* Rich gradient that transitions through various blue tones */
+        background: linear-gradient(
+          135deg,
+          #040e1b 0%,
+          #0a1e3c 25%,
+          #0d47a1 50%,
+          #1565c0 75%,
+          #0d2352 100%
+        );
+        background-size: 100% 100%; /* Fixed size instead of 400% 400% */
+        background-attachment: fixed;
+        color: #e2e8f0;
+        font-family: "Poppins", sans-serif;
+        position: relative;
+        /* Commenting out the animation for better performance */
+        /* animation: gradientShift 15s ease infinite; */
+      }
+
+      /* Mobile phones */
+      @media only screen and (max-width: 767px) {
+        body {
+          /* Simpler gradient with fewer stops for mobile */
+          background: linear-gradient(
+            135deg,
+            #040e1b 0%,
+            #0a1e3c 30%,
+            #1565c0 70%,
+            #0d2352 100%
+          );
         }
-        
-        /* Viewport-following gradient container for all browsers */
-        .viewport-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-            
-            background: linear-gradient(135deg, 
-                #051018 0%, 
-                #0a1b30 25%, 
-                #0c2f5e 50%, 
-                #0e428c 75%, 
-                #0b203d 100%);
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
         }
-        
-        /* Ensure content is positioned properly */
-        .section, header, footer, main {
-            position: relative;
-            z-index: 1;
+        50% {
+          background-position: 100% 50%;
         }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .section {
+        scroll-margin-top: 5rem;
+        position: relative;
+        background: transparent; /* Ensure all sections are transparent */
+        z-index: 1;
+      }
+
+      /* Add smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Rajdhani", sans-serif;
+        font-weight: 700;
+      }
+
+      /* Fixed typewriter animation */
+      .typewriter-container {
+        display: inline-block;
+        margin: 0 auto;
+      }
+      .typing-animation {
+        overflow: hidden;
+        display: inline-block;
+        border-right: 0.15em solid #38bdf8;
+        white-space: nowrap;
+        margin: 0 auto;
+        width: 0;
+        animation: typing 3.5s steps(30, end) forwards,
+          blink-caret 0.75s step-end infinite;
+      }
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #38bdf8;
+        }
+      }
+
+      .gradient-text {
+        background: linear-gradient(to right, #38bdf8, #0ea5e9);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+      }
+
+      .tech-card {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(6, 182, 212, 0.3);
+        box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+      }
+
+      .tech-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
+        border-color: rgba(6, 182, 212, 0.6);
+      }
+
+      .tech-icon {
+        filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.6));
+      }
+
+      /* Glass effect for cards */
+      .glass-card {
+        background: rgba(10, 27, 48, 0.4);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(6, 182, 212, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+          0 0 15px rgba(6, 182, 212, 0.2);
+      }
+
+      /* Neon button effect */
+      .neon-button {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .neon-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(6, 182, 212, 0.4),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .neon-button:hover::before {
+        left: 100%;
+      }
+
+      /* Gaming-inspired decorative elements */
+      .gaming-icon {
+        position: absolute;
+        opacity: 0.1;
+        filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.8));
+        z-index: 0;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+
+      /* Glowing border */
+      .glow-border {
+        position: relative;
+      }
+
+      .glow-border::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid transparent;
+        border-radius: inherit;
+        background: linear-gradient(
+            45deg,
+            #38bdf8,
+            transparent,
+            #0ea5e9,
+            transparent
+          )
+          border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+        animation: borderGlow 3s linear infinite;
+      }
+
+      @keyframes borderGlow {
+        0% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.5;
+        }
+      }
+
+      /* Remove any existing background */
+      html,
+      body {
+        background: none !important;
+      }
+
+      /* Viewport-following gradient container for all browsers */
+      .viewport-gradient {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        pointer-events: none;
+
+        background: linear-gradient(
+          135deg,
+          #051018 0%,
+          #0a1b30 25%,
+          #0c2f5e 50%,
+          #0e428c 75%,
+          #0b203d 100%
+        );
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+
+      /* Ensure content is positioned properly */
+      .section,
+      header,
+      footer,
+      main {
+        position: relative;
+        z-index: 1;
+      }
     </style>
-    <link rel="stylesheet" href="styles/modal.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles/modal.css" />
+  </head>
+  <body>
     <div class="viewport-gradient"></div>
 
     <!-- Gaming decorative elements -->
-    <div class="gaming-icon" style="top: 15%; right: 10%; width: 100px; height: 100px;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="#38bdf8">
-            <path d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 248c-22.1 0-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40s-17.9 40-40 40zm-24 56c0 22.1-17.9 40-40 40s-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"/>
-        </svg>
+    <div
+      class="gaming-icon"
+      style="top: 15%; right: 10%; width: 100px; height: 100px"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 640 512"
+        fill="#38bdf8"
+      >
+        <path
+          d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 248c-22.1 0-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40s-17.9 40-40 40zm-24 56c0 22.1-17.9 40-40 40s-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"
+        />
+      </svg>
     </div>
-    <div class="gaming-icon" style="bottom: 20%; left: 5%; width: 80px; height: 80px; animation-delay: 2s;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#0ea5e9">
-            <path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.7 363c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0z"/>
-        </svg>
+    <div
+      class="gaming-icon"
+      style="
+        bottom: 20%;
+        left: 5%;
+        width: 80px;
+        height: 80px;
+        animation-delay: 2s;
+      "
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+        fill="#0ea5e9"
+      >
+        <path
+          d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.7 363c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0z"
+        />
+      </svg>
     </div>
-    <div class="gaming-icon" style="top: 40%; left: 15%; width: 120px; height: 120px; animation-delay: 1s;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="#38bdf8">
-            <path d="M80 0C44.7 0 16 28.7 16 64V448c0 35.3 28.7 64 64 64H304c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H80zm80 432h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H160c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
-        </svg>
+    <div
+      class="gaming-icon"
+      style="
+        top: 40%;
+        left: 15%;
+        width: 120px;
+        height: 120px;
+        animation-delay: 1s;
+      "
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"
+        fill="#38bdf8"
+      >
+        <path
+          d="M80 0C44.7 0 16 28.7 16 64V448c0 35.3 28.7 64 64 64H304c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H80zm80 432h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H160c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+        />
+      </svg>
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full bg-blue-900/50 backdrop-blur-md shadow-lg z-10 border-b border-cyan-500/30 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold gradient-text">Steven Harianto</a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="hover:text-cyan-400 transition-all duration-300 relative group">
-                    Home
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#about" class="hover:text-cyan-400 transition-all duration-300 relative group">
-                    About
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#skills" class="hover:text-cyan-400 transition-all duration-300 relative group">
-                    Skills
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#projects" class="hover:text-cyan-400 transition-all duration-300 relative group">
-                    Projects
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#contact" class="hover:text-cyan-400 transition-all duration-300 relative group">
-                    Contact
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-            </div>
-            <!-- Mobile menu button -->
-            <button id="menu-toggle" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
+    <nav
+      class="fixed w-full bg-blue-900/50 backdrop-blur-md shadow-lg z-10 border-b border-cyan-500/30 transition-all duration-300"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="text-xl font-bold gradient-text">Steven Harianto</a>
+        <div class="hidden md:flex space-x-8">
+          <a
+            href="#home"
+            class="hover:text-cyan-400 transition-all duration-300 relative group"
+          >
+            Home
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            href="#about"
+            class="hover:text-cyan-400 transition-all duration-300 relative group"
+          >
+            About
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            href="#skills"
+            class="hover:text-cyan-400 transition-all duration-300 relative group"
+          >
+            Skills
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            href="#projects"
+            class="hover:text-cyan-400 transition-all duration-300 relative group"
+          >
+            Projects
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            href="#contact"
+            class="hover:text-cyan-400 transition-all duration-300 relative group"
+          >
+            Contact
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
         </div>
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 bg-blue-900/70 backdrop-blur-md">
-                <a href="#home" class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300">Home</a>
-                <a href="#about" class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300">About</a>
-                <a href="#skills" class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300">Skills</a>
-                <a href="#projects" class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300">Projects</a>
-                <a href="#contact" class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300">Contact</a>
-            </div>
+        <!-- Mobile menu button -->
+        <button id="menu-toggle" class="md:hidden focus:outline-none">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 bg-blue-900/70 backdrop-blur-md">
+          <a
+            href="#home"
+            class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300"
+            >About</a
+          >
+          <a
+            href="#skills"
+            class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300"
+            >Projects</a
+          >
+          <a
+            href="#contact"
+            class="block px-3 py-2 hover:bg-blue-800/30 rounded transition-all duration-300"
+            >Contact</a
+          >
         </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="section h-screen flex items-center text-white">
-        <div class="container mx-auto px-6 py-12 text-center relative z-10">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6" data-aos="fade-up">Hi, I'm <span class="gradient-text">Steven Harianto</span></h1>
-            <div class="typewriter-container mb-6" data-aos="fade-up" data-aos-delay="300">
-                <h2 class="text-2xl md:text-3xl typing-animation">Full Stack Developer</h2>
-            </div>
-            <p class="text-xl max-w-2xl mx-auto mb-10 text-cyan-100" data-aos="fade-up" data-aos-delay="600">Learning Mobile Development and Deep Learning</p>
-            <a href="#projects" class="neon-button bg-gradient-to-r from-cyan-600 to-sky-600 text-white px-8 py-3 rounded-full font-bold hover:from-cyan-500 hover:to-sky-500 transition shadow-lg shadow-cyan-500/20 transform hover:-translate-y-1 hover:scale-105" data-aos="fade-up" data-aos-delay="900">
-                View My Work
-            </a>
+      <div class="container mx-auto px-6 py-12 text-center relative z-10">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6" data-aos="fade-up">
+          Hi, I'm <span class="gradient-text">Steven Harianto</span>
+        </h1>
+        <div
+          class="typewriter-container mb-6"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <h2 class="text-2xl md:text-3xl typing-animation">
+            Full Stack Developer
+          </h2>
         </div>
+        <p
+          class="text-xl max-w-2xl mx-auto mb-10 text-cyan-100"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          Learning Mobile Development and Deep Learning
+        </p>
+        <a
+          href="#projects"
+          class="neon-button bg-gradient-to-r from-cyan-600 to-sky-600 text-white px-8 py-3 rounded-full font-bold hover:from-cyan-500 hover:to-sky-500 transition shadow-lg shadow-cyan-500/20 transform hover:-translate-y-1 hover:scale-105"
+          data-aos="fade-up"
+          data-aos-delay="900"
+        >
+          View My Work
+        </a>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section py-24">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0" data-aos="fade-right" data-aos-duration="800">
-                    <div class="relative glow-border rounded-xl">
-                        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500 to-sky-600 blur-xl opacity-20 transform -rotate-6"></div>
-                        <img src="https://via.placeholder.com/400" alt="Steven Harianto" class="rounded-xl shadow-xl mx-auto relative">
-                    </div>
-                </div>
-                <div class="md:w-2/3 md:pl-16" data-aos="fade-left" data-aos-duration="800">
-                    <p class="text-lg mb-6 leading-relaxed text-cyan-100">
-                        I'm interested in programming since high school. I like solving coding problems and seeing my programs work. 
-                        My first interest in programming was web development, because I could immediately see feedback of my website 
-                        becoming real - it's so satisfying and was the first branch of programming that made me think of the potential of programming.
-                    </p>
-                    <p class="text-lg mb-8 leading-relaxed text-cyan-100">
-                        I am currently honing my skills in web development by trying frameworks like React, Next, Angular, and Laravel. 
-                        I'm also currently interested in deep learning, creating models to solve problems, and learning mobile development, 
-                        starting from Flutter and Kotlin Android Studio. I like trying new things and exploring what's possible to create, 
-                        and I'm especially excited about the future of AI.
-                    </p>
-                    <div class="flex space-x-6" data-aos="fade-up" data-aos-delay="200">
-                        <a href="http://github.com/steveharianto/" target="_blank" class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all" title="GitHub">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/steven-harianto/" target="_blank" class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all" title="LinkedIn">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold mb-16 text-center gradient-text"
+          data-aos="fade-up"
+        >
+          About Me
+        </h2>
+        <div class="flex flex-col md:flex-row items-center">
+          <div
+            class="md:w-1/3 mb-8 md:mb-0"
+            data-aos="fade-right"
+            data-aos-duration="800"
+          >
+            <div class="relative glow-border rounded-xl">
+              <div
+                class="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500 to-sky-600 blur-xl opacity-20 transform -rotate-6"
+              ></div>
+              <img
+                src="https://via.placeholder.com/400"
+                alt="Steven Harianto"
+                class="rounded-xl shadow-xl mx-auto relative"
+              />
             </div>
+          </div>
+          <div
+            class="md:w-2/3 md:pl-16"
+            data-aos="fade-left"
+            data-aos-duration="800"
+          >
+            <p class="text-lg mb-6 leading-relaxed text-cyan-100">
+              I'm interested in programming since high school. I like solving
+              coding problems and seeing my programs work. My first interest in
+              programming was web development, because I could immediately see
+              feedback of my website becoming real - it's so satisfying and was
+              the first branch of programming that made me think of the
+              potential of programming.
+            </p>
+            <p class="text-lg mb-8 leading-relaxed text-cyan-100">
+              I am currently honing my skills in web development by trying
+              frameworks like React, Next, Angular, and Laravel. I'm also
+              currently interested in deep learning, creating models to solve
+              problems, and learning mobile development, starting from Flutter
+              and Kotlin Android Studio. I like trying new things and exploring
+              what's possible to create, and I'm especially excited about the
+              future of AI.
+            </p>
+            <div class="flex space-x-6" data-aos="fade-up" data-aos-delay="200">
+              <a
+                href="http://github.com/steveharianto/"
+                target="_blank"
+                class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all"
+                title="GitHub"
+              >
+                <svg
+                  class="w-8 h-8"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/steven-harianto/"
+                target="_blank"
+                class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all"
+                title="LinkedIn"
+              >
+                <svg
+                  class="w-8 h-8"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="section py-24">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">My Skills</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                <!-- Machine Learning / AI -->
-                <div class="tech-card bg-card p-8 rounded-xl shadow-lg hover:border-primary transition-all" data-aos="flip-up" data-aos-delay="100">
-                    <div class="text-primary text-5xl mb-6 flex justify-center tech-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-16 h-16">
-                            <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.5095-2.6067-1.4997z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-center">Deep Learning</h3>
-                </div>
-                
-                <!-- Full Stack Development -->
-                <div class="tech-card bg-card p-8 rounded-xl shadow-lg hover:border-primary transition-all" data-aos="flip-up" data-aos-delay="200">
-                    <div class="text-primary text-5xl mb-6 flex justify-center tech-icon">
-                        <i class="fab fa-react"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-center">React</h3>
-                </div>
-                
-                <!-- Mobile Development -->
-                <div class="tech-card bg-card p-8 rounded-xl shadow-lg hover:border-primary transition-all" data-aos="flip-up" data-aos-delay="300">
-                    <div class="text-primary text-5xl mb-6 flex justify-center tech-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-16 h-16">
-                            <path d="M14.314 0L2.3 12 6 15.7 21.684.014h.002Z" fill="currentColor"/>
-                            <path d="M21.684 24l-7.989-8L6 24h15.684Z" fill="currentColor"/>
-                            <path d="M6 15.7 14.314 24H6v-8.3Z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-center">Flutter</h3>
-                </div>
-                
-                <!-- Cloud & Backend -->
-                <div class="tech-card bg-card p-8 rounded-xl shadow-lg hover:border-primary transition-all" data-aos="flip-up" data-aos-delay="400">
-                    <div class="text-primary text-5xl mb-6 flex justify-center tech-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-16 h-16">
-                            <path d="M19.62 11.558l-3.203 2.98-2.972-5.995 1.538-3.448c.4-.7 1.024-.692 1.414 0z" fill="currentColor"/>
-                            <path d="M13.445 8.543l2.972 5.995-11.97 11.135z" fill="currentColor"/>
-                            <path d="M23.123 7.003c.572-.55 1.164-.362 1.315.417l3.116 18.105-10.328 6.2c-.36.2-1.32.286-1.32.286s-.874-.104-1.207-.3L4.447 25.673z" fill="currentColor"/>
-                            <path d="M13.445 8.543l-8.997 17.13L8.455.638c.148-.78.592-.855.988-.167z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-center">Firebase</h3>
-                </div>
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold mb-16 text-center gradient-text"
+          data-aos="fade-up"
+        >
+          My Skills
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <!-- Machine Learning / AI -->
+          <div
+            class="tech-card bg-card p-8 rounded-xl shadow-lg hover:border-primary transition-all"
+            data-aos="flip-up"
+            data-aos-delay="100"
+          >
+            <div
+              class="text-primary text-5xl mb-6 flex justify-center tech-icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="w-16 h-16"
+              >
+                <path
+                  d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.5095-2.6067-1.4997z"
+                  fill="currentColor"
+                />
+              </svg>
             </div>
-            
-            <!-- Skill Categories -->
-            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="100">
-                <!-- AI & Machine Learning -->
-                <div class="glass-card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold mb-4 text-primary">AI & Machine Learning</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">TensorFlow</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">PyTorch</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">Python</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">Computer Vision</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">NLP</span>
-                    </div>
-                </div>
-                
-                <!-- Web Development -->
-                <div class="glass-card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold mb-4 text-primary">Full Stack Development</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">TypeScript</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">Next.js</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">Node.js</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">Tailwind CSS</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">Express</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">MongoDB</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">SQL</span>
-                    </div>
-                </div>
-                
-                <!-- Mobile Development -->
-                <div class="glass-card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold mb-4 text-primary">Mobile Development</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">Kotlin</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">Android</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">Dart</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">iOS</span>
-                        <span class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20">React Native</span>
-                    </div>
-                </div>
+            <h3 class="text-xl font-semibold text-center">Deep Learning</h3>
+          </div>
+
+          <!-- Full Stack Development -->
+          <div
+            class="tech-card bg-card p-8 rounded-xl shadow-lg hover:border-primary transition-all"
+            data-aos="flip-up"
+            data-aos-delay="200"
+          >
+            <div
+              class="text-primary text-5xl mb-6 flex justify-center tech-icon"
+            >
+              <i class="fab fa-react"></i>
             </div>
-            
-            <!-- Other Technologies -->
-            <div class="mt-12" data-aos="fade-up" data-aos-delay="150">
-                <h3 class="text-lg font-semibold mb-4 text-center text-primary-light">Other Technologies</h3>
-                <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">JavaScript</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">HTML5</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">CSS3</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">Bootstrap</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">Vite</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">Angular</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">Laravel</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">Flask</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">Firestore</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">Git</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">Docker</span>
-                    <span class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300">CI/CD</span>
-                </div>
+            <h3 class="text-xl font-semibold text-center">React</h3>
+          </div>
+
+          <!-- Mobile Development -->
+          <div
+            class="tech-card bg-card p-8 rounded-xl shadow-lg hover:border-primary transition-all"
+            data-aos="flip-up"
+            data-aos-delay="300"
+          >
+            <div
+              class="text-primary text-5xl mb-6 flex justify-center tech-icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="w-16 h-16"
+              >
+                <path
+                  d="M14.314 0L2.3 12 6 15.7 21.684.014h.002Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M21.684 24l-7.989-8L6 24h15.684Z"
+                  fill="currentColor"
+                />
+                <path d="M6 15.7 14.314 24H6v-8.3Z" fill="currentColor" />
+              </svg>
             </div>
+            <h3 class="text-xl font-semibold text-center">Flutter</h3>
+          </div>
+
+          <!-- Cloud & Backend -->
+          <div
+            class="tech-card bg-card p-8 rounded-xl shadow-lg hover:border-primary transition-all"
+            data-aos="flip-up"
+            data-aos-delay="400"
+          >
+            <div
+              class="text-primary text-5xl mb-6 flex justify-center tech-icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                class="w-16 h-16"
+              >
+                <path
+                  d="M19.62 11.558l-3.203 2.98-2.972-5.995 1.538-3.448c.4-.7 1.024-.692 1.414 0z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M13.445 8.543l2.972 5.995-11.97 11.135z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M23.123 7.003c.572-.55 1.164-.362 1.315.417l3.116 18.105-10.328 6.2c-.36.2-1.32.286-1.32.286s-.874-.104-1.207-.3L4.447 25.673z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M13.445 8.543l-8.997 17.13L8.455.638c.148-.78.592-.855.988-.167z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-center">Firebase</h3>
+          </div>
         </div>
+
+        <!-- Skill Categories -->
+        <div
+          class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <!-- AI & Machine Learning -->
+          <div class="glass-card p-6 rounded-xl">
+            <h3 class="text-xl font-bold mb-4 text-primary">
+              AI & Machine Learning
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >TensorFlow</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >PyTorch</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >Python</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >Computer Vision</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >NLP</span
+              >
+            </div>
+          </div>
+
+          <!-- Web Development -->
+          <div class="glass-card p-6 rounded-xl">
+            <h3 class="text-xl font-bold mb-4 text-primary">
+              Full Stack Development
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >TypeScript</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >Next.js</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >Node.js</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >Tailwind CSS</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >Express</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >MongoDB</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >SQL</span
+              >
+            </div>
+          </div>
+
+          <!-- Mobile Development -->
+          <div class="glass-card p-6 rounded-xl">
+            <h3 class="text-xl font-bold mb-4 text-primary">
+              Mobile Development
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >Kotlin</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >Android</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >Dart</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >iOS</span
+              >
+              <span
+                class="px-3 py-1 bg-card text-primary-light rounded-full border border-primary/20"
+                >React Native</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Technologies -->
+        <div class="mt-12" data-aos="fade-up" data-aos-delay="150">
+          <h3 class="text-lg font-semibold mb-4 text-center text-primary-light">
+            Other Technologies
+          </h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >JavaScript</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >HTML5</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >CSS3</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >Bootstrap</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >Vite</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >Angular</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >Laravel</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >Flask</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >Firestore</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >Git</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >Docker</span
+            >
+            <span
+              class="px-3 py-1 bg-card text-primary-light/80 rounded-full border border-primary/10 text-sm hover:border-primary/30 transition-all duration-300"
+              >CI/CD</span
+            >
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="section py-24">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">My Projects</h2>
-            
-            <!-- Projects container - this will be populated from the projects.js file -->
-            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project cards will be dynamically inserted here -->
-            </div>
-            
-            <!-- View More Projects Button -->
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="#" id="view-more-projects" class="neon-button inline-block bg-gradient-to-r from-cyan-600 to-sky-600 text-white px-8 py-3 rounded-full font-bold hover:from-cyan-500 hover:to-sky-500 transition shadow-lg shadow-cyan-500/20 transform hover:-translate-y-1 hover:scale-105">
-                    View More Projects
-                </a>
-            </div>
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold mb-16 text-center gradient-text"
+          data-aos="fade-up"
+        >
+          My Projects
+        </h2>
+
+        <!-- Projects container - this will be populated from the projects.js file -->
+        <div
+          id="projects-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <!-- Project cards will be dynamically inserted here -->
         </div>
+
+        <!-- View More Projects Button -->
+        <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+          <a
+            href="#"
+            id="view-more-projects"
+            class="neon-button inline-block bg-gradient-to-r from-cyan-600 to-sky-600 text-white px-8 py-3 rounded-full font-bold hover:from-cyan-500 hover:to-sky-500 transition shadow-lg shadow-cyan-500/20 transform hover:-translate-y-1 hover:scale-105"
+          >
+            View More Projects
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section py-24">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center gradient-text" data-aos="fade-up">Get In Touch</h2>
-            
-            <!-- Gaming-inspired decorative element -->
-            <div class="relative">
-                <div class="absolute -top-20 -right-10 opacity-10 w-40 h-40 z-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="#38bdf8">
-                        <path d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 248c-22.1 0-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40s-17.9 40-40 40zm-24 56c0 22.1-17.9 40-40 40s-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"/>
-                    </svg>
-                </div>
-                
-                <div class="max-w-2xl mx-auto glass-card p-8 rounded-xl shadow-xl border border-cyan-500/30 glow-border relative z-10" data-aos="fade-up" data-aos-delay="200">
-                    <form id="contact-form" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-cyan-100 mb-2">Name</label>
-                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-blue-900/40 border border-cyan-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/70 transition-all">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-cyan-100 mb-2">Email</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-blue-900/40 border border-cyan-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/70 transition-all">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-cyan-100 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-blue-900/40 border border-cyan-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/70 transition-all"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit" class="w-full neon-button bg-gradient-to-r from-cyan-600 to-sky-600 text-white px-6 py-3 rounded-lg font-bold hover:from-cyan-500 hover:to-sky-500 transition shadow-lg shadow-cyan-500/20 transform hover:scale-105">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                    
-                    <div id="success-message" class="hidden mt-4 p-4 bg-green-500/20 border border-green-400 rounded-lg text-green-400 text-center">
-                        Your message has been sent successfully!
-                    </div>
-                </div>
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold mb-16 text-center gradient-text"
+          data-aos="fade-up"
+        >
+          Get In Touch
+        </h2>
+
+        <!-- Gaming-inspired decorative element -->
+        <div class="relative">
+          <div class="absolute -top-20 -right-10 opacity-10 w-40 h-40 z-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 640 512"
+              fill="#38bdf8"
+            >
+              <path
+                d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 248c-22.1 0-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40s-17.9 40-40 40zm-24 56c0 22.1-17.9 40-40 40s-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"
+              />
+            </svg>
+          </div>
+
+          <div
+            class="max-w-2xl mx-auto glass-card p-8 rounded-xl shadow-xl border border-cyan-500/30 glow-border relative z-10"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <form id="contact-form" class="space-y-6">
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-cyan-100 mb-2"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 bg-blue-900/40 border border-cyan-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/70 transition-all"
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-cyan-100 mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 bg-blue-900/40 border border-cyan-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/70 transition-all"
+                />
+              </div>
+              <div>
+                <label
+                  for="message"
+                  class="block text-sm font-medium text-cyan-100 mb-2"
+                  >Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  required
+                  class="w-full px-4 py-3 bg-blue-900/40 border border-cyan-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/70 transition-all"
+                ></textarea>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="w-full neon-button bg-gradient-to-r from-cyan-600 to-sky-600 text-white px-6 py-3 rounded-lg font-bold hover:from-cyan-500 hover:to-sky-500 transition shadow-lg shadow-cyan-500/20 transform hover:scale-105"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
+
+            <div
+              id="success-message"
+              class="hidden mt-4 p-4 bg-green-500/20 border border-green-400 rounded-lg text-green-400 text-center"
+            >
+              Your message has been sent successfully!
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-blue-900/70 backdrop-blur-md border-t border-cyan-500/30 py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-8 md:mb-0">
-                    <h3 class="text-2xl font-bold gradient-text mb-4">Steven Harianto</h3>
-                    <p class="text-cyan-100">Full Stack Developer & ML Engineer</p>
-                </div>
-                
-                <div class="flex flex-col items-center md:items-end">
-                    <div class="flex space-x-6 mb-6">
-                        <a href="https://github.com/steveharianto/" target="_blank" class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all" title="GitHub">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/steven-harianto/" target="_blank" class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all" title="LinkedIn">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
-                            </svg>
-                        </a>
-                        <a href="https://instagram.com/username" target="_blank" class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all" title="Instagram">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <p class="text-cyan-100 text-sm text-center md:text-right">Follow me on social media!</p>
-                </div>
+    <footer
+      class="bg-blue-900/70 backdrop-blur-md border-t border-cyan-500/30 py-12"
+    >
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-8 md:mb-0">
+            <h3 class="text-2xl font-bold gradient-text mb-4">
+              Steven Harianto
+            </h3>
+            <p class="text-cyan-100">Full Stack Developer & ML Engineer</p>
+          </div>
+
+          <div class="flex flex-col items-center md:items-end">
+            <div class="flex space-x-6 mb-6">
+              <a
+                href="https://github.com/steveharianto/"
+                target="_blank"
+                class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all"
+                title="GitHub"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/steven-harianto/"
+                target="_blank"
+                class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all"
+                title="LinkedIn"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://instagram.com/username"
+                target="_blank"
+                class="text-cyan-400 hover:text-sky-300 transform hover:scale-110 transition-all"
+                title="Instagram"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                  />
+                </svg>
+              </a>
             </div>
-            
-            <hr class="border-cyan-500/20 my-8">
-            
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="text-cyan-100 text-sm mb-4 md:mb-0">&copy; 2023 Steven Harianto. All rights reserved.</p>
-                <div class="flex space-x-6 text-sm">
-                    <a href="#" class="text-cyan-100 hover:text-cyan-300 transition-colors">Privacy Policy</a>
-                    <a href="#" class="text-cyan-100 hover:text-cyan-300 transition-colors">Terms of Service</a>
-                    <a href="#" class="text-cyan-100 hover:text-cyan-300 transition-colors">Cookie Policy</a>
-                </div>
-            </div>
+            <p class="text-cyan-100 text-sm text-center md:text-right">
+              Follow me on social media!
+            </p>
+          </div>
         </div>
+
+        <hr class="border-cyan-500/20 my-8" />
+
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-cyan-100 text-sm mb-4 md:mb-0">
+            &copy; 2023 Steven Harianto. All rights reserved.
+          </p>
+          <div class="flex space-x-6 text-sm">
+            <a
+              href="#"
+              class="text-cyan-100 hover:text-cyan-300 transition-colors"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-cyan-100 hover:text-cyan-300 transition-colors"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-cyan-100 hover:text-cyan-300 transition-colors"
+              >Cookie Policy</a
+            >
+          </div>
+        </div>
+      </div>
     </footer>
 
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <!-- AOS Animation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
-    
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      defer
+    ></script>
+
     <!-- Project Card Component -->
     <script src="components/project-card.js"></script>
-    
+
     <!-- Import project data and loader (added type="module" for ES6 imports) -->
     <script type="module" src="components/projects-loader.js"></script>
-    
+
     <!-- Main JavaScript -->
     <script src="index.js" defer></script>
 
     <!-- Add this script at the end of your body to enforce the behavior in Safari -->
     <script>
-        // Safari-specific fix to ensure the gradient stays fixed to viewport
-        function fixSafariGradient() {
-            const isIOS = /iPad|iPhone|iPod|Mac/.test(navigator.userAgent);
-            const isWebKit = 'WebkitAppearance' in document.documentElement.style;
-            
-            if (isIOS || isWebKit) {
-                const gradient = document.querySelector('.viewport-gradient');
-                
-                // Force position:fixed behavior
-                gradient.style.position = 'fixed';
-                gradient.style.top = '0';
-                gradient.style.left = '0';
-                gradient.style.width = '100vw';
-                gradient.style.height = '100vh';
-                gradient.style.zIndex = '-1';
-                
-                // Force proper stacking context
-                document.body.style.position = 'relative';
-                document.body.style.zIndex = '0';
-                
-                // Apply on resize to maintain consistency
-                window.addEventListener('resize', () => {
-                    gradient.style.width = '100vw';
-                    gradient.style.height = '100vh';
-                });
-            }
+      // Safari-specific fix to ensure the gradient stays fixed to viewport
+      function fixSafariGradient() {
+        const isIOS = /iPad|iPhone|iPod|Mac/.test(navigator.userAgent);
+        const isWebKit = "WebkitAppearance" in document.documentElement.style;
+
+        if (isIOS || isWebKit) {
+          const gradient = document.querySelector(".viewport-gradient");
+
+          // Force position:fixed behavior
+          gradient.style.position = "fixed";
+          gradient.style.top = "0";
+          gradient.style.left = "0";
+          gradient.style.width = "100vw";
+          gradient.style.height = "100vh";
+          gradient.style.zIndex = "-1";
+
+          // Force proper stacking context
+          document.body.style.position = "relative";
+          document.body.style.zIndex = "0";
+
+          // Apply on resize to maintain consistency
+          window.addEventListener("resize", () => {
+            gradient.style.width = "100vw";
+            gradient.style.height = "100vh";
+          });
         }
-        
-        // Run on page load
-        document.addEventListener('DOMContentLoaded', fixSafariGradient);
-        window.addEventListener('load', fixSafariGradient);
+      }
+
+      // Run on page load
+      document.addEventListener("DOMContentLoaded", fixSafariGradient);
+      window.addEventListener("load", fixSafariGradient);
     </script>
-</body>
+  </body>
 </html>
