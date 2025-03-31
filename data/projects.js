@@ -37,30 +37,37 @@ const projectsData = [
     },
     {
         id: 2,
-        image: "https://via.placeholder.com/600x400",
-        title: "Project Title 2",
-        description: "A brief description of the project, highlighting key features and technologies used.",
-        tags: ["Flutter", "Firebase", "Dart"],
-        liveLink: "#",
-        codeLink: "#",
-        liveDisabled: true,
+        image: "/images/project002/thumbnail.png",
+        title: "MaiPet",
+        description: "Platform marketplace untuk jual beli anjing dengan fitur filtering, autentikasi, dan manajemen listing.",
+        tags: ["React", "TypeScript", "Firebase", "Firestore", "Bootstrap", "Vite"],
+        liveLink: "https://steveharianto.github.io/MaiPet/",
+        codeLink: "https://github.com/steveharianto/MaiPet",
+        liveDisabled: false,
         codeDisabled: false,
-        startDate: "April 2023",
-        endDate: "Ongoing",
+        startDate: "Agustus 2023",
+        endDate: "Maret 2024",
         details: {
-            overview: "An in-depth description of the project, its goals, and the problems it solves. Here you can explain the project's background, purpose, and the value it provides to users.",
-            challenge: "The challenges faced during the development process and how they were overcome. This could include technical challenges, design issues, or scope management problems.",
-            solution: "The solution implemented to address the challenges and meet the project requirements. This could include the architecture, design patterns, and technologies used.",
-            outcome: "The results of the project, including metrics, user feedback, and lessons learned. This section can highlight the project's success and its impact.",
+            overview: "MaiPet adalah platform marketplace online yang menghubungkan penjual dan pembeli anjing. Dengan antarmuka yang modern dan responsif, pengguna dapat mencari anjing berdasarkan jenis, melihat detail lengkap hewan, serta memasang iklan untuk anjing yang ingin dijual.",
+            challenge: "Tantangan utama dalam pengembangan MaiPet adalah membangun sistem pencarian dan filtering yang efisien serta mengintegrasikan autentikasi dan penyimpanan data gambar. Menghadirkan UI yang intuitif dan mudah digunakan juga menjadi prioritas dalam project ini.",
+            solution: "Saya mengimplementasikan Firebase untuk autentikasi dan Firestore untuk penyimpanan data, serta Firebase Storage untuk mengelola gambar. React dan TypeScript dipilih untuk membangun frontend yang robust, dengan penekanan pada komponen yang reusable dan struktur data yang kuat.",
+            outcome: "MaiPet berhasil menyediakan platform yang mudah digunakan untuk jual beli anjing. Pengguna dapat mendaftar, login, memasang iklan, dan mencari anjing secara efisien. Interface yang bersih dan responsif membuat pengalaman pengguna menjadi menyenangkan.",
             images: [
-                "https://via.placeholder.com/800x500",
-                "https://via.placeholder.com/800x500"
+                "/images/project002/thumbnail.png",
+                "/images/project002/page1.png",
+                "/images/project002/page2.png",
+                "/images/project002/page3.png",
+                "/images/project002/page4.png",
+                "/images/project002/page5.png"
             ],
             features: [
-                "Feature 1: Description of feature 1",
-                "Feature 2: Description of feature 2"
+                "Autentikasi Pengguna: Login dengan email/password atau Google",
+                "Pencarian & Filtering: Filter anjing berdasarkan jenis/breed",
+                "Posting Iklan: Form multi-step untuk posting iklan baru",
+                "Detail Anjing: Tampilan detail lengkap dengan informasi dan gambar",
+                "Manajemen Media: Upload dan display gambar anjing"
             ],
-            role: "Backend Developer"
+            role: "Full Stack Developer"
         }
     },
     {
