@@ -72,34 +72,38 @@ const projectsData = [
     },
     {
         id: 3,
-        image: "https://via.placeholder.com/600x400",
-        title: "Project Title 3",
-        description: "A brief description of the project, highlighting key features and technologies used.",
-        tags: ["TensorFlow", "Python", "PyTorch"],
-        liveLink: "#",
-        codeLink: "#",
-        liveDisabled: true,
-        codeDisabled: true,
-        startDate: "November 2022",
-        endDate: "February 2023",
+        image: "/images/project003/thumbnail.png",
+        title: "IdleGame",
+        description: "An addictive idle clicker game where players build a coin empire through strategic upgrades and prestige.",
+        tags: ["React", "JavaScript", "CSS", "Chart.js", "HTML5", "Game Development"],
+        liveLink: "https://steveharianto.github.io/IdleGame/",
+        codeLink: "https://github.com/steveharianto/IdleGame",
+        liveDisabled: false,
+        codeDisabled: false,
+        startDate: "April 2021",
+        endDate: "May 2021",
         details: {
-            overview: "An in-depth description of the project, its goals, and the problems it solves. Here you can explain the project's background, purpose, and the value it provides to users.",
-            challenge: "The challenges faced during the development process and how they were overcome. This could include technical challenges, design issues, or scope management problems.",
-            solution: "The solution implemented to address the challenges and meet the project requirements. This could include the architecture, design patterns, and technologies used.",
-            outcome: "The results of the project, including metrics, user feedback, and lessons learned. This section can highlight the project's success and its impact.",
+            overview: "Inspired by a love for the idle game genre and curiosity about the complexities of their development, this project was an exploration into creating an engaging incremental game from scratch. Players start by clicking to earn coins, then strategically purchase various types of upgrades to automate income per second (CPS). The primary goal is to reach earning milestones to 'Prestige', which resets some progress but grants powerful permanent bonuses, enabling further exponential growth and unlocking new challenges.",
+            challenge: "The main challenge lay in balancing the game's progression curve—ensuring upgrade costs, their effects, and the prestige mechanic felt satisfying and motivating, neither too slow nor too fast. Efficiently managing a highly dynamic application state in React (constantly increasing coins, CPS, upgrade levels) and handling potentially very large numbers while maintaining smooth UI performance were significant technical hurdles. Additionally, designing a clear and intuitive user interface (UI) to present a wealth of information (stats, upgrades, charts) was a key design consideration.",
+            solution: "Progression balancing was approached through iterative testing and adjustments to cost/effect formulas. React Hooks (`useState`, `useEffect`) were leveraged extensively for reactive and efficient state management within the game loop. Helper functions were created to encapsulate complex logic like bulk cost calculations, prestige bonuses, and large number formatting. To enhance user experience, features like visual feedback (click animations, button progress bars), dynamically unlocking upgrades, and data visualization using Chart.js were implemented. Responsive layout was achieved using CSS Flexbox.",
+            outcome: "This project resulted in a fully functional idle game with solid core mechanics: manual/automated clicking, a tiered upgrade system, prestige with permanent bonuses, bulk buying, offline progression, and data visualization. Personally, it provided valuable hands-on experience in complex state management in React, incremental gameplay design and balancing, implementing third-party charting libraries, and focusing on UI/UX details to create a satisfying gameplay loop. The game successfully achieved the initial goal of being an idle game I would enjoy playing myself.",
             images: [
-                "https://via.placeholder.com/800x500",
-                "https://via.placeholder.com/800x500",
-                "https://via.placeholder.com/800x500",
-                "https://via.placeholder.com/800x500"
+                "/images/project003/thumbnail.png",
+                "/images/project003/page1.png",
+                "/images/project003/page2.png",
             ],
             features: [
-                "Feature 1: Description of feature 1",
-                "Feature 2: Description of feature 2",
-                "Feature 3: Description of feature 3",
-                "Feature 4: Description of feature 4"
+                "Core Gameplay Loop: Manual clicking to start, buy upgrades to automate Coins Per Second (CPS).",
+                "Diverse Upgrade System: Various buildings (Farm, Mine, etc.) with exponentially increasing costs and CPS effects.",
+                "Prestige Mechanic: Reset progress (coins, upgrade levels) to gain Prestige Points providing permanent bonuses to CPS and click value.",
+                "Bulk Buy Functionality: Ability to purchase upgrades in quantities of x1, x10, x100, or the maximum affordable amount ('Max').",
+                "Dynamic Upgrades & Animation: New upgrades gradually appear with animations as the player reaches specific total earnings milestones.",
+                "Interactive Data Visualization: Line chart displaying total earnings over time and a doughnut chart showing investment distribution.",
+                "Offline Progression: Players earn coins based on their CPS while the game is inactive.",
+                "Visual Feedback: Floating number effects on click, pulsing animation on coin total, and progress bars on unaffordable upgrade buttons.",
+                "Comprehensive Player Statistics: Dedicated panel displaying key metrics like total clicks, manual/total earnings, playtime, prestige count, etc."
             ],
-            role: "ML Engineer"
+            role: "Solo Developer"
         }
     },
     {
