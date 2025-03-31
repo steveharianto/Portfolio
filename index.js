@@ -109,47 +109,37 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(canvas);
         
         const ctx = canvas.getContext('2d');
-        const particles = [];
         
-        // Create particles data
+        // Create and draw static particles once
         for (let i = 0; i < 50; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 6 + 2,
-                speedX: Math.random() * 0.2 - 0.1,
-                speedY: Math.random() * 0.2 - 0.1,
-                color: `hsla(${Math.random() > 0.5 ? 195 : 210}, 100%, 70%, ${Math.random() * 0.3 + 0.1})`
-            });
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const size = Math.random() * 6 + 2;
+            const color = `hsla(${Math.random() > 0.5 ? 195 : 210}, 100%, 70%, ${Math.random() * 0.3 + 0.1})`;
+            
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, Math.PI * 2);
+            ctx.fill();
         }
         
-        // Single animation loop
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(p => {
-                p.x += p.speedX;
-                p.y += p.speedY;
-                
-                // Bounds checking
-                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-                
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-            });
-            
-            requestAnimationFrame(animate);
-        }
-        
-        animate();
-        
-        // Handle resize
+        // Only redraw on window resize
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            
+            // Redraw particles after resize
+            for (let i = 0; i < 50; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 6 + 2;
+                const color = `hsla(${Math.random() > 0.5 ? 195 : 210}, 100%, 70%, ${Math.random() * 0.3 + 0.1})`;
+                
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         });
     }
     
